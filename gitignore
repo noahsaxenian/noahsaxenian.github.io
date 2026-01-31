@@ -1,0 +1,44 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Backup Files
+*.bak
+*.tmp
+*.temp
+
+# Large or Personal Files
+*.psd
+*.ai
+*.sketch
+*.fig
+*.xcf
+
+# Development Files (if you add build tools later)
+node_modules/
+npm-debug.log
+.npm
+.env
+.env.local
+
+# Keep these folders but ignore their contents initially
+# (Remove the lines below once you add images)
+images/*.jpg
+images/*.png
+images/*.gif
+!images/.gitkeep
