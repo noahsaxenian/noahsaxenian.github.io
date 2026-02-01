@@ -25,6 +25,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Get all gallery items (for art portfolio)
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    // Add click event listeners to gallery items
+    galleryItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const artworkId = this.getAttribute('data-artwork');
+            if (artworkId) {
+                window.location.href = `${artworkId}.html`;
+            }
+        });
+        
+        // Add keyboard accessibility
+        item.setAttribute('tabindex', '0');
+        item.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+    });
+    
     // ===== SMOOTH SCROLLING =====
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
