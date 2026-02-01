@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noah Saxenian - Portfolio</title>
+    <title>Engineering Projects - Noah Saxenian</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,53 +11,71 @@
         <div class="nav-container">
             <a href="index.html" class="nav-logo">Noah Saxenian</a>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link active">Home</a></li>
-                <li><a href="engineering.html" class="nav-link">Engineering</a></li>
+                <li><a href="index.html" class="nav-link active">Engineering</a></li>
                 <li><a href="art.html" class="nav-link">Art</a></li>
                 <li><a href="resume.html" class="nav-link">Resume</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="contact.html" class="nav-link">About Me</a></li>
             </ul>
         </div>
     </nav>
 
     <main class="container">
-        <!--<section class="hero">
-            <h1>Welcome to My Portfolio</h1>
-            <p class="subtitle">Engineer | Artist | Creator</p>
-        </section>-->
+        <section class="page-header">
+            <h1>Engineering Projects</h1>
+        </section>
 
-        <section class="about-section">
-            <h2>I'm Noah!</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        I’m a Mechanical Engineering graduate from Tufts University with minors in Music Engineering and Mathematics.
-                        I’m passionate about robotics, engineering design and acoustics, and I’m always excited to experiment and problem solve.
-                        As an artist, I enjoy bringing creativity and attention to fine detail into my engineering.
-                        I am motivated to contribute to projects that will bring positive change to our world.
-                    </p>
+        <section class="projects-grid">
+            <!-- Project 1 -->
+            <article class="project-card" data-project="project1">
+                <div class="project-image">
+                    <img src="images/project1-placeholder.jpg" alt="Project 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EProject Image%3C/text%3E%3C/svg%3E'">
                 </div>
-            </div>
-        </section>
+                <div class="project-info">
+                    <h3>Microaary Slide Printer</h3>
+                    <p class="project-summary">Senior capstone project to design an efficient system of printing microarray glass slides for the standardization of Immunohistochemistry testing</p>
+                    <div class="project-tags">
+                        <span class="tag">Electronics</span>
+                        <span class="tag">CAD</span>
+                        <span class="tag">Fabrication</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+            </article>
 
-        <section class="quick-links">
-            <h2>Explore My Work</h2>
-            <div class="card-grid">
-                <a href="engineering.html" class="card">
-                    <h3>Engineering Projects</h3>
-                    <p>View my favorite technical projects</p>
-                </a>
-                <a href="art.html" class="card">
-                    <h3>Art Portfolio</h3>
-                    <p>Browse my creative works</p>
-                </a>
-                <a href="resume.html" class="card">
-                    <h3>Resume</h3>
-                    <p>My experience, skills, and background</p>
-                </a>
-            </div>
-        </section>
+            <!-- Project 2 -->
+            <article class="project-card" data-project="microarray">
+                <div class="project-image">
+                    <img src="images/project2-placeholder.jpg" alt="Project 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EProject Image%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="project-info">
+                    <h3>Project Title 2</h3>
+                    <p class="project-summary">Brief description of your second project. Highlight the key features and achievements.</p>
+                    <div class="project-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">Database</span>
+                    </div>
+                </div>
+            </article>
 
+            <!-- Project 3 -->
+            <article class="project-card" data-project="project3">
+                <div class="project-image">
+                    <img src="images/project3-placeholder.jpg" alt="Project 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EProject Image%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="project-info">
+                    <h3>Project Title 3</h3>
+                    <p class="project-summary">Brief description of your third project. What makes this project unique?</p>
+                    <div class="project-tags">
+                        <span class="tag">C++</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">OpenCV</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Add more projects as needed - just copy and paste the article block -->
+        </section>
     </main>
 
     <footer>
