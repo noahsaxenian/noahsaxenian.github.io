@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microarray Printing Automation - Noah Saxenian</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Noah Saxenian</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">About</a></li>
+                <li><a href="engineering.html" class="nav-link active">Engineering</a></li>
+                <li><a href="art.html" class="nav-link">Art</a></li>
+                <li><a href="resume.html" class="nav-link">Resume</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container project-detail">
+        <a href="engineering.html" class="back-link">← Back to Engineering Projects</a>
+        
+        <!-- Project Header -->
+        <section class="detail-header">
+            <h1>Microarray Printing Automation</h1>
+            <p class="project-date">December 2025</p>
+            <div class="project-tags">
+                <span class="tag">Electronics</span>
+                <span class="tag">CAD</span>
+                <span class="tag">Fabrication</span>
+                <span class="tag">Programming</span>
+            </div>
+        </section>
+
+        <!-- Project Summary -->
+        <section class="project-summary">
+            <p><strong>Description:</strong> Senior capstone project to design an efficient system of printing microarray glass slides for the standardization of Immunohistochemistry testing</p>
+            <p><strong>Group Members:</strong> Eli Singer, Theo Prince</p>
+            <p><em>This is documentation of my Tufts Fall 2025 Senior Capstone Project, completed with Eli Singer and Theo Prince. We worked for Boston Cell Standards to design and prototype an efficient method of printing microarray calibrator slides for Immunohistochemistry testing.</em></p>
+        </section>
+
+        <!-- Main Content -->
+        <section class="detail-content">
+            
+            <!-- Text and Image Side by Side -->
+            <div class="content-row">
+                <div class="content-text">
+                    <h2>Motivation</h2>
+                    <p>Immunohistochemistry (IHC) is a laboratory testing method used to test tissue samples for cancer. IHC testing has unusually high error rates compared to other types of clinical labs. To reduce test error, Boston Cell Standards makes calibrator slides for standardizing IHC testing.</p>
+                    
+                    <h3>Problem Statement</h3>
+                    <p>Printing microarray calibrator slides requires dispensing 1µL droplets of a rapidly settling suspension in a precise 3x5 grid. Boston Cell Standards needs a new method efficient enough to meet current market needs.</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/microarray/calibrator-slide.jpg" alt="Example Calibrator Slide" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ECalibrator Slide%3C/text%3E%3C/svg%3E'">
+                    <p class="image-caption">Example Calibrator Slide</p>
+                </div>
+            </div>
+
+            <!-- Full Width Image -->
+            <div class="content-full-image">
+                <img src="images/microarray/demo-video.jpg" alt="Demo Video" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22%3E%3Crect fill=%22%23ddd%22 width=%22800%22 height=%22400%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EDemo Video%3C/text%3E%3C/svg%3E'">
+                <p class="image-caption">Microarray Slide Printer in Action</p>
+            </div>
+
+            <!-- Collapsible Section -->
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h2>User Needs and Engineering Requirements</h2>
+                </button>
+                <div class="toggle-content">
+                    <p>From meetings with the team at Boston Cell Standards, we produced these key user needs and target engineering requirements.</p>
+                    
+                    <div class="two-column">
+                        <div class="column">
+                            <h3>User Needs:</h3>
+                            <ul>
+                                <li>Correct grid spacing</li>
+                                <li>Increased production speed</li>
+                                <li>Droplet concentration</li>
+                                <li>Droplet size</li>
+                                <li>Scalable</li>
+                                <li>No cross-contamination</li>
+                                <li>Well documented</li>
+                                <li>Low Cost</li>
+                                <li>Minimal human input</li>
+                                <li>Off-the-shelf reservoirs</li>
+                            </ul>
+                        </div>
+                        <div class="column">
+                            <h3>Engineering Requirements:</h3>
+                            <ul>
+                                <li>Grid Spacing (3x5 grid, 4mm on center)</li>
+                                <li>Droplet Size (1 μl)</li>
+                                <li>Solution Mixing (Well-distributed microbeads)</li>
+                                <li>Printing Speed (3 slides per minute)</li>
+                                <li>Reservoir Size (1 mL)</li>
+                                <li>Applicator Replacement (Swap in 90 seconds)</li>
+                                <li>Reliability (>3 sigma success rate)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Another Collapsible Section -->
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h2>Initial Ideation Process</h2>
+                </button>
+                <div class="toggle-content">
+                    <p>We collectively worked to brainstorm, sketch, and share ideas based on these requirements. Two of our best concepts are shown below.</p>
+                    
+                    <!-- Image on Left, Text on Right -->
+                    <div class="content-row reverse">
+                        <div class="content-image-small">
+                            <img src="images/microarray/concept1.jpg" alt="Concept 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EConcept 1%3C/text%3E%3C/svg%3E'">
+                            <p class="image-caption">Concept 1: Pipette Adapter</p>
+                        </div>
+                        <div class="content-text-wide">
+                            <h3>Concept 1: Pipette Adapter</h3>
+                            <p>Concept 1 was to fabricate a 15-tipped pipette adapter that could attach to their current functioning pipette head, distributing the aspiration action across all 15 vials. Custom elongated reservoirs would be used to fulfill the 1mL volume requirement, while being close enough together for the pipette tips to dip into all at once.</p>
+                        </div>
+                    </div>
+
+                    <!-- Text on Left, Image on Right -->
+                    <div class="content-row">
+                        <div class="content-text-wide">
+                            <h3>Concept 2: Multi-stage Printing</h3>
+                            <p>Concept 2 was based on using microapplicators to pick up and deposit the fluid. Separating the microapplicators into three rows would allow the reservoirs to be more spaced out to accommodate a larger volume.</p>
+                            <p>The biggest downside for both of these ideas was a need for custom reservoirs. To use off-the-shelf vials would make the system easier to use and allow for filling vials ahead of time.</p>
+                        </div>
+                        <div class="content-image-small">
+                            <img src="images/microarray/concept2.jpg" alt="Concept 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EConcept 2%3C/text%3E%3C/svg%3E'">
+                            <p class="image-caption">Concept 2: Multi-stage Printing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regular Section with Images -->
+            <h2>Prototyping Process</h2>
+            
+            <div class="content-row">
+                <div class="content-text">
+                    <p>For the first prototype, we focused on building a head, reservoir, and bed system to work with an existing XYZ Gantry system (we repurposed a Prusa Mk3 3D Printer).</p>
+                    <p><strong>My main contributions were:</strong></p>
+                    <ul>
+                        <li>Custom carriage for the printer to accept a new head</li>
+                        <li>Head design to hold microapplicators</li>
+                    </ul>
+                    <p>The first prototype was a successful proof of concept for our split head and reservoir system. We were able to write custom g-code to move the gantry as desired, and print five successful slides in a single run.</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/microarray/prototype1.jpg" alt="First Prototype" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EFirst Prototype%3C/text%3E%3C/svg%3E'">
+                </div>
+            </div>
+
+            <!-- Three Column Image Gallery -->
+            <div class="image-grid-3">
+                <div class="grid-item">
+                    <img src="images/microarray/version1.jpg" alt="Version 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22250%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22250%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EVersion 1%3C/text%3E%3C/svg%3E'">
+                    <p class="image-caption">Version 1: No way to build off it, no room for lower belt</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/microarray/version2.jpg" alt="Version 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22250%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22250%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EVersion 2%3C/text%3E%3C/svg%3E'">
+                    <p class="image-caption">Version 2: Bolt on head, too tall so x-homing failed</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/microarray/version3.jpg" alt="Version 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22250%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22250%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EVersion 3%3C/text%3E%3C/svg%3E'">
+                    <p class="image-caption">Version 3: Z-probe mounted, simple 1-applicator head for testing</p>
+                </div>
+            </div>
+
+            <!-- Callout Box -->
+            <div class="callout-box">
+                <h3>My Split Head Design Innovation</h3>
+                <p>This key innovation came to me while sketching out the minimum distance between vials to maintain the diameter required for 1mL standard sizes.</p>
+                <p>By splitting the head into five unique groups of three, the full grid could be printed over the course of five operations. This would print across five slides at once (printing three droplets on each), but effectively printing a whole slide's worth of droplets in each operation.</p>
+                <p>We moved forward with this solution, as it allowed for standard vials, enabled high theoretical printing speed, was easily expandable, and was feasible to prototype.</p>
+            </div>
+
+            <!-- Two Column Image Layout -->
+            <div class="image-grid-2">
+                <div class="grid-item">
+                    <img src="images/microarray/final-design1.jpg" alt="Final Design" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EFinal Design%3C/text%3E%3C/svg%3E'">
+                    <p class="image-caption">Final head assembly with aluminum backing plate</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/microarray/final-design2.jpg" alt="Head System" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EHead System%3C/text%3E%3C/svg%3E'">
+                    <p class="image-caption">Quick-release head with thumb screw</p>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/noahsaxenian" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/noah-saxenian" target="_blank">LinkedIn</a>
+            <a href="mailto:noahsaxenian@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="project-toggles.js"></script>
+</body>
+</html>

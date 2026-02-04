@@ -706,6 +706,230 @@ footer p {
     font-size: 1rem;
 }
 
+/* ===== PROJECT LAYOUT COMPONENTS ===== */
+
+/* Project Summary Box */
+.project-summary {
+    background-color: var(--background-alt);
+    border-left: 4px solid var(--primary-color);
+    padding: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+    border-radius: var(--border-radius);
+}
+
+.project-summary p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.project-summary p:last-child {
+    margin-bottom: 0;
+}
+
+.project-date {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Content Row - Text and Image Side by Side */
+.content-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    align-items: start;
+}
+
+.content-row.reverse {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Text Widths */
+.content-text {
+    /* Default 50% */
+}
+
+.content-text-wide {
+    /* For when you want text to take more space */
+}
+
+/* Image Sizes */
+.content-image img,
+.content-image-small img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.content-image-small {
+    max-width: 350px;
+}
+
+.image-caption {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: var(--spacing-xs);
+    font-style: italic;
+}
+
+/* Full Width Image */
+.content-full-image {
+    margin: var(--spacing-lg) 0;
+}
+
+.content-full-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Two Column Layout */
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-md) 0;
+}
+
+.column h3 {
+    margin-top: 0;
+}
+
+/* Image Grids */
+.image-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+}
+
+.image-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+}
+
+.grid-item img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.grid-item .image-caption {
+    margin-top: var(--spacing-xs);
+}
+
+/* Callout Box */
+.callout-box {
+    background-color: var(--background-alt);
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+}
+
+.callout-box h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+/* Toggle Sections */
+.toggle-section {
+    margin: var(--spacing-lg) 0;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.toggle-header {
+    width: 100%;
+    background-color: var(--background-alt);
+    border: none;
+    padding: var(--spacing-md);
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    transition: background-color 0.3s ease;
+}
+
+.toggle-header:hover {
+    background-color: var(--border-color);
+}
+
+.toggle-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.toggle-icon {
+    color: var(--primary-color);
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.toggle-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.toggle-content.active {
+    /* Height set by JavaScript */
+}
+
+.toggle-content > * {
+    padding: 0 var(--spacing-md);
+}
+
+.toggle-content > *:first-child {
+    padding-top: var(--spacing-md);
+}
+
+.toggle-content > *:last-child {
+    padding-bottom: var(--spacing-md);
+}
+
+/* Responsive Design for Project Layouts */
+@media (max-width: 768px) {
+    .content-row,
+    .content-row.reverse {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .two-column {
+        grid-template-columns: 1fr;
+    }
+    
+    .image-grid-2,
+    .image-grid-3 {
+        grid-template-columns: 1fr;
+    }
+    
+    .content-image-small {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .toggle-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .callout-box {
+        padding: var(--spacing-sm);
+    }
+}
+
 /* ===== CONTACT SECTION ===== */
 .contact-content {
     max-width: 800px;
