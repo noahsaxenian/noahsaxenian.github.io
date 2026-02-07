@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Microarray Printing Automation - Noah Saxenian</title>
     <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar">
@@ -308,7 +309,7 @@
                             <span class="code-language">Python</span>
                             <button class="code-copy-btn">Copy</button>
                         </div>
-                        <pre><code># generate_plate_sequence.py
+                        <pre><code class="language-python"># generate_plate_sequence.py
 # Generates G-code for dipping into a reservoir and sequentially visiting multiple plates.
 # written with some help from chatGPT
 
@@ -568,5 +569,9 @@ print(f"G-code file written to: {output_file}")</code></pre>
     <script src="../script.js"></script>
     <script src="../project-toggles.js"></script>
     <script src="../code-blocks.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
 </body>
 </html>
