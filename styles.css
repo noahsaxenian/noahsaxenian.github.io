@@ -60,7 +60,7 @@ h3 {
 }
 
 p {
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
 }
 
 a {
@@ -247,7 +247,7 @@ img {
     color: var(--text-color);
 }
 
-.project-summary {
+.project-card-summary {
     color: var(--text-light);
     margin-bottom: var(--spacing-sm);
 }
@@ -749,6 +749,10 @@ footer p {
     /* Default 50% */
 }
 
+.content-text p{
+    margin-bottom: var(--spacing-sm);
+}
+
 .content-text-wide {
     /* For when you want text to take more space */
 }
@@ -792,6 +796,12 @@ footer p {
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-lg);
     margin: var(--spacing-md) 0;
+}
+
+.two-column-big-left {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    gap: var(--spacing-lg);
 }
 
 .column h3 {
@@ -840,7 +850,7 @@ footer p {
 
 /* Toggle Sections */
 .toggle-section {
-    margin: var(--spacing-lg) 0;
+    margin: var(--spacing-md) 0;
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     overflow: hidden;
@@ -850,7 +860,7 @@ footer p {
     width: 100%;
     background-color: var(--background-alt);
     border: none;
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     text-align: left;
     cursor: pointer;
     display: flex;
@@ -865,7 +875,12 @@ footer p {
 
 .toggle-header h2 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.toggle-header p {
+    margin: 0;
     color: var(--text-color);
 }
 
@@ -927,6 +942,179 @@ footer p {
     
     .callout-box {
         padding: var(--spacing-sm);
+    }
+}
+
+/* ===== CODE BLOCKS ===== */
+
+/* Inline Code */
+code {
+    background-color: var(--background-alt);
+    color: #e83e8c;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+/* Code Block Container */
+.code-block {
+    background-color: #282c34;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    overflow-x: auto;
+    box-shadow: var(--shadow);
+}
+
+.code-block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid #3e4451;
+}
+
+.code-language {
+    color: #abb2bf;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.code-copy-btn {
+    background-color: #3e4451;
+    color: #abb2bf;
+    border: none;
+    padding: 0.4em 0.8em;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.code-copy-btn:hover {
+    background-color: #4e5561;
+}
+
+.code-copy-btn.copied {
+    background-color: #98c379;
+    color: white;
+}
+
+/* Code Block Content */
+.code-block pre {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+
+.code-block code {
+    background: transparent;
+    color: #abb2bf;
+    padding: 0;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    display: block;
+}
+
+/* Syntax Highlighting - One Dark Theme */
+.code-block .keyword {
+    color: #c678dd;
+}
+
+.code-block .string {
+    color: #98c379;
+}
+
+.code-block .comment {
+    color: #5c6370;
+    font-style: italic;
+}
+
+.code-block .function {
+    color: #61afef;
+}
+
+.code-block .number {
+    color: #d19a66;
+}
+
+.code-block .operator {
+    color: #56b6c2;
+}
+
+.code-block .class-name {
+    color: #e5c07b;
+}
+
+.code-block .variable {
+    color: #e06c75;
+}
+
+/* Simple Code Block (without header) */
+.simple-code-block {
+    background-color: #282c34;
+    color: #abb2bf;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    box-shadow: var(--shadow);
+}
+
+.simple-code-block pre {
+    margin: 0;
+}
+
+/* Light Theme Code Block (Alternative) */
+.code-block.light {
+    background-color: #fafafa;
+    border: 1px solid var(--border-color);
+}
+
+.code-block.light code {
+    color: #24292e;
+}
+
+.code-block.light .keyword {
+    color: #d73a49;
+}
+
+.code-block.light .string {
+    color: #032f62;
+}
+
+.code-block.light .comment {
+    color: #6a737d;
+}
+
+.code-block.light .function {
+    color: #6f42c1;
+}
+
+.code-block.light .number {
+    color: #005cc5;
+}
+
+/* Responsive Code Blocks */
+@media (max-width: 768px) {
+    .code-block,
+    .simple-code-block {
+        font-size: 0.85rem;
+        padding: var(--spacing-sm);
+    }
+    
+    .code-block-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
     }
 }
 

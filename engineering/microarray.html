@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microarray Printing Automation - Noah Saxenian</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Noah Saxenian</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link active">Engineering</a></li>
+                <li><a href="../art.html" class="nav-link">Art</a></li>
+                <li><a href="../resume.html" class="nav-link">Resume</a></li>
+                <li><a href="../contact.html" class="nav-link">About Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container project-detail">
+        <a href="../index.html" class="back-link">← Back to Engineering Projects</a>
+        
+        <!-- Project Header -->
+        <section class="detail-header">
+            <h1>Microarray Printing Automation</h1>
+            <p class="project-date">December 2025</p>
+            <div class="project-tags">
+                <span class="tag">Electronics</span>
+                <span class="tag">CAD</span>
+                <span class="tag">Fabrication</span>
+                <span class="tag">Programming</span>
+            </div>
+        </section>
+
+        <!-- Project Summary -->
+        <section class="project-summary">
+            <p><strong>Description:</strong> Senior capstone project to design an efficient system of printing microarray glass slides for the standardization of Immunohistochemistry testing</p>
+            <p><strong>Group Members:</strong> Eli Singer, Theo Prince</p>
+            <p><em>This is documentation of my Tufts Fall 2025 Senior Capstone Project, completed with Eli Singer and Theo Prince. We worked for Boston Cell Standards to design and prototype an efficient method of printing microarray calibrator slides for Immunohistochemistry testing.</em></p>
+        </section>
+
+        <!-- Main Content -->
+        <section class="detail-content">
+            
+            <!-- Text and Image Side by Side -->
+            <div class="content-row">
+                <div class="content-text">
+                    <h2>Motivation</h2>
+                    <p>Immunohistochemistry (IHC) is a laboratory testing method used to test tissue samples for cancer. IHC testing has unusually high error rates compared to other types of clinical labs. To reduce test error, Boston Cell Standards makes calibrator slides for standardizing IHC testing.</p>
+                    
+                    <h3>Problem Statement</h3>
+                    <p>Printing microarray calibrator slides requires dispensing 1µL droplets of a rapidly settling suspension in a precise 3x5 grid. Boston Cell Standards needs a new method efficient enough to meet current market needs.</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/microarray/calibrator_slide.png" alt="Example Calibrator Slide" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ECalibrator Slide%3C/text%3E%3C/svg%3E'">
+                    <p class="image-caption">Example Calibrator Slide</p>
+                </div>
+            </div>
+
+            <!-- Full Width Image -->
+            <div class="content-full-image">
+                <img src="images/microarray/demo-video.jpg" alt="Demo Video" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22%3E%3Crect fill=%22%23ddd%22 width=%22800%22 height=%22400%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EDemo Video%3C/text%3E%3C/svg%3E'">
+                <p class="image-caption">Microarray Slide Printer in Action</p>
+            </div>
+
+            <!-- Collapsible Section -->
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h2>User Needs and Engineering Requirements</h2>
+                </button>
+                <div class="toggle-content">
+                    <p>From meetings with the team at Boston Cell Standards, we produced these key user needs and target engineering requirements.</p>
+                    
+                    <div class="two-column">
+                        <div class="column">
+                            <h3>User Needs:</h3>
+                            <ul>
+                                <li>Correct grid spacing</li>
+                                <li>Increased production speed</li>
+                                <li>Droplet concentration</li>
+                                <li>Droplet size</li>
+                                <li>Scalable</li>
+                                <li>No cross-contamination</li>
+                                <li>Well documented</li>
+                                <li>Low Cost</li>
+                                <li>Minimal human input</li>
+                                <li>Off-the-shelf reservoirs</li>
+                            </ul>
+                        </div>
+                        <div class="column">
+                            <h3>Engineering Requirements:</h3>
+                            <ul>
+                                <li>Grid Spacing (3x5 grid, 4mm on center)</li>
+                                <li>Droplet Size (1 μl)</li>
+                                <li>Solution Mixing (Well-distributed microbeads)</li>
+                                <li>Printing Speed (3 slides per minute)</li>
+                                <li>Reservoir Size (1 mL)</li>
+                                <li>Applicator Replacement (Swap in 90 seconds)</li>
+                                <li>Reliability (>3 sigma success rate)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Another Collapsible Section -->
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h2>Initial Ideation Process</h2>
+                </button>
+                <div class="toggle-content">
+                    <p>
+                        We collectively worked to brainstorm, sketch, and share ideas based on these requirements.
+                        Two of our best concepts are shown below.
+                    </p>
+                    
+                    <!-- Image on Left, Text on Right -->
+                    <div class="content-row reverse">
+                        <div class="content-image-small">
+                            <img src="images/microarray/concept1.png" alt="Concept 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EConcept 1%3C/text%3E%3C/svg%3E'">
+                            <p class="image-caption">Concept 1: Pipette Adapter</p>
+                        </div>
+                        <div class="content-text-wide">
+                            <h3>Concept 1: Pipette Adapter</h3>
+                            <p>Concept 1 was to fabricate a 15-tipped pipette adapter that could attach to their current functioning pipette head, distributing the aspiration action across all 15 vials. Custom elongated reservoirs would be used to fulfill the 1mL volume requirement, while being close enough together for the pipette tips to dip into all at once.</p>
+                        </div>
+                    </div>
+
+                    <!-- Text on Left, Image on Right -->
+                    <div class="content-row">
+                        <div class="content-text-wide">
+                            <h3>Concept 2: Multi-stage Printing</h3>
+                            <p>Concept 2 was based on using microapplicators to pick up and deposit the fluid. Separating the microapplicators into three rows would allow the reservoirs to be more spaced out to accommodate a larger volume.</p>
+                            <p>The biggest downside for both of these ideas was a need for custom reservoirs. To use off-the-shelf vials would make the system easier to use and allow for filling vials ahead of time.</p>
+                        </div>
+                        <div class="content-image-small">
+                            <img src="images/microarray/concept2.jpg" alt="Concept 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EConcept 2%3C/text%3E%3C/svg%3E'">
+                            <p class="image-caption">Concept 2: Multi-stage Printing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regular Section with Images -->
+            <h2>Prototyping Process</h2>
+            
+            <div class="content-row">
+                <div class="content-text">
+                    <p>For the first prototype, we focused on building a head, reservoir, and bed system to work with an existing XYZ Gantry system (we repurposed a Prusa Mk3 3D Printer).</p>
+                    <p><strong>My main contributions were:</strong></p>
+                    <ul>
+                        <li>Custom carriage for the printer to accept a new head</li>
+                        <li>Head design to hold microapplicators</li>
+                    </ul>
+                    <p>The first prototype was a successful proof of concept for our split head and reservoir system. We were able to write custom g-code to move the gantry as desired, and print five successful slides in a single run.</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/microarray/prototype1.jpeg" alt="First Prototype" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EFirst Prototype%3C/text%3E%3C/svg%3E'">
+                </div>
+            </div>
+
+            <h2>Final Design</h2>
+
+            <h3>Head System (my main contribution)</h3>
+
+            <p>The head system boasts a carriage with z-probe mount, quick-release head with a single thumb screw, and a aluminum plate stiffened head system with precision fit openings for microapplicators. The whole process of swapping out microapplicators takes around 90 seconds.</p>
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <p>The first step was to modify the 3D printer to accept a custom head.</p>
+                </button>
+                <div class="toggle-content">
+                    <!-- Three Column Image Gallery -->
+                    <div class="image-grid-3">
+                        <div class="grid-item">
+                            <img src="images/microarray/version1.jpeg" alt="Version 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22250%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22250%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EVersion 1%3C/text%3E%3C/svg%3E'">
+                            <p class="image-caption">Version 1: No way to build off it, no room for lower belt</p>
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/microarray/version2.jpeg" alt="Version 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22250%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22250%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EVersion 2%3C/text%3E%3C/svg%3E'">
+                            <p class="image-caption">Version 2: Bolt on head, too tall so x-homing failed</p>
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/microarray/version3.jpeg" alt="Version 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22250%22%3E%3Crect fill=%22%23ddd%22 width=%22300%22 height=%22250%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EVersion 3%3C/text%3E%3C/svg%3E'">
+                            <p class="image-caption">Version 3: Z-probe mounted, simple 1-applicator head for testing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <p>We then tested a variety of methods for holding the microapplicators.</p>
+                </button>
+                <div class="toggle-content">
+                    <div class="two-column">
+                        <div class="column">
+                            <p>A reliable method to hold the microapplicators was necessary, and surprisingly difficult to achieve. Eli performed initial profile tests of different sizes:</p>
+                        </div>
+                        <div class="column">
+                            <div class="content-image">
+                                <img src="images/microarray/holder1.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="two-column">
+                        <div class="column">
+                            <p>I decided to test a PLA and TPU combination. PLA for structural stiffness and TPU for an easy press fit. Notice print imperfections — we deemed it to difficult to print consistent TPU and it wouldn’t reliably hold the microapplicators perfectly vertical.</p>
+                        </div>
+                        <div class="column">
+                            <div class="content-image">
+                                <img src="images/microarray/holder2.jpeg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="two-column">
+                        <div class="column">
+                            <p>I also tested a compliant design. Press fit PLA is very dependent on print parameters, so the idea was to rely more on material properties than exact dimensions. This had potential but was finicky, so we decided to stick with a press fit.</p>
+                        </div>
+                        <div class="column">
+                            <div class="content-image">
+                                <img src="images/microarray/holder3.jpeg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Callout Box -->
+            <div class="callout-box">
+                <div class="two-column-big-left" style="gap: 10rem;">
+                    <div class="column">
+                        <h3>My Split Head Design Innovation</h3>
+                        <p>This key innovation came to me while sketching out the minimum distance between vials to maintain the diameter required for 1mL standard sizes.</p>
+                        <p>By splitting the head into five unique groups of three, the full grid could be printed over the course of five operations. This would print across five slides at once (printing three droplets on each), but effectively printing a whole slide's worth of droplets in each operation.</p>
+                        <p>We moved forward with this solution, as it allowed for standard vials, enabled high theoretical printing speed, was easily expandable, and was feasible to prototype.</p>
+                    </div>
+                    <div class="column">
+                        <img src="images/microarray/split_head.gif">
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                After several prototypes, the final design is pictured below. A 3D printed head is held level by an aluminum plate bolted to the underside. This ensures all microapplicators align to the same plane, minimizing issues from the 3D printed plastic warping. A single thumb screw clamps the head to the carriage.
+            </p>
+
+            <!-- Two Column Image Layout -->
+            <div class="image-grid-2">
+                <div class="grid-item">
+                    <img src="images/microarray/head.png" alt="Final Design" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EFinal Design%3C/text%3E%3C/svg%3E'">
+                    <p class="image-caption">Final head assembly with aluminum backing plate</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/microarray/head_removal.gif" alt="Head System" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EHead System%3C/text%3E%3C/svg%3E'">
+                    <p class="image-caption">Quick-release head with thumb screw</p>
+                </div>
+            </div>
+
+            <h3>Reservoir and Bed System</h3>
+
+            <div class="two-column">
+                <div class="column">
+                    <ul>
+                        <li>The slide tray was design to swap out easily, allowing for quick runs back-to-back without needing to wait for the solution to dry.</li>
+                        <li>The slides tray is mounted on a raised platform, which minimizes z-axis travel. This optimizes the toolpath for maximum efficiency.</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <div class="content-image-small">
+                        <img src="images/microarray/bed_system.gif">
+                    </div>
+                </div>
+            </div>
+            <div class="two-column">
+                <div class="column">
+                    <ul>
+                        <li>A stainless steel plate was waterjet cut to bolt to the existing printer bed, providing a level surface for the z-probe to home to along with cutouts for a slide tray system and reservoir.</li>
+                        <li>A 3D printed vial holder accepts standard vials in the same layout as the head. All 15 microapplicators dip into the vials simultaneously to mix and pick up solution.</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <div class="content-image-small">
+                        <img src="images/microarray/reservoir.png">
+                    </div>
+                </div>
+            </div>
+
+            <h3>Gantry Control</h3>
+            <p>Controlling the 3D printer is not too difficult in concept. By creating custom G-code files, the built in firmware knows how to read them, so we can send the head to any coordinate point at a desired speed. After messing with a premade G-code builder for a little, we realized we needed a custom solution to easily modify parameters.</p>
+            <p>I wrote a Python script to build up our G-code files. It works by defining locations of important items such as the reservoir and the first slide position, and then repeats the same mixing pattern in the reservoir between each dip onto the plates. With this script, it became easy to update the G-code if we changed the bed layout. More importantly, it allowed us to easily test different mixing patterns.</p>
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <p>gcode_generator.py</p>
+                </button>
+                <div class="toggle-content">
+                    <div class="code-block">
+                        <div class="code-block-header">
+                            <span class="code-language">Python</span>
+                            <button class="code-copy-btn">Copy</button>
+                        </div>
+                        <pre><code># generate_plate_sequence.py
+# Generates G-code for dipping into a reservoir and sequentially visiting multiple plates.
+# written with some help from chatGPT
+
+import numpy as np 
+
+# === USER PARAMETERS ===
+reservoir = (186.5, 110)      # (X, Y)
+plate_start = (93, 1)     # (X, Y) for Plate 1
+plate_spacing = 26        # mm between plates along Y
+num_plates = 9            # actually 5, but 4 extra steps
+
+plate_height = 28.7          # Z height for plate deposit
+#height_change = -0.05       # mm to change height for each slide (slope)
+
+dip_height = 1.0            # Z height for dipping
+lift_height = plate_height + 3          # Z height after lifting
+travel_speed = 10000       # XY travel speed (mm/min)
+z_speed = 6000            # Z move speed (mm/min)
+pause_time = 0.1          # seconds to pause after each dip
+
+output_file = "showcase.gcode"
+
+
+
+# === HELPER FUNCTIONS ===
+def g1(x=None, y=None, z=None, f=None):
+    parts = ["G1"]
+    if x is not None: parts.append(f"X{x:.3f}")
+    if y is not None: parts.append(f"Y{y:.3f}")
+    if z is not None: parts.append(f"Z{z:.3f}")
+    if f is not None: parts.append(f"F{f}")
+    return " ".join(parts)
+
+# VIAL MODEL
+x1 = 0.2
+x2 = 6.0 / 2
+z1 = 0.5
+z2 = 12.5
+
+m = (z2-z1)/(x2-x1)
+
+def vial_radius(z_rel):
+    """
+    Returns radius of vial at height relative to base of vial.
+    Defined by  ellipse bottom, angled section, and cylindrical top.
+    """
+    if z_rel < z1:
+        # rounded bottom semi-ellipse
+        radius = x1 * np.sqrt(1 - (z_rel - z1)**2 / z1**2)
+    elif z_rel < z2:
+        # linear section from (x1, z1) to (x2, z2)
+        radius = (z_rel - z1)/m + x1
+    else:
+        # cylinder top
+        radius = x2
+    return radius
+
+    
+def mixing_pattern_circles(g, center_x, center_y):
+    """
+    Creates alternating circles moving down and up the vial.
+    """
+    start_z = dip_height
+    end_z = 15 + dip_height
+    step_z = 2
+    direction = True  # True = clockwise (G2), False = counterclockwise (G3)
+    
+    # little bottom dips
+    for i in range(3):
+        g.append(g1(z=start_z + 5, f=z_speed))
+        g.append(g1(z=start_z, f=z_speed))
+    g.append(g1(z=end_z, f=z_speed))  # lift up after dip
+    
+    # circle down
+    z = end_z
+    while z > start_z:
+        g.append(f"; --- Mixing circle at Z={z:.1f} ---")
+        # Move to start of circle
+        radius = vial_radius(z - dip_height)   # subtract off z position at bottom of vial to get relative z
+        g.append(g1(x=center_x + radius, y=center_y, z=z, f=z_speed))
+        # Alternate between G2 (CW) and G3 (CCW)
+        g.append(f"G2 I{-radius:.3f} J0 F{travel_speed} ; CW circle")
+        g.append(f"G3 I{-radius:.3f} J0 F{travel_speed} ; CCW circle")
+        # Flip direction for next layer
+        direction = not direction
+        z -= step_z
+
+    z = start_z
+    while z <= end_z:
+        g.append(f"; --- Mixing circle at Z={z:.1f} ---")
+        radius = vial_radius(z - dip_height)
+        # Move to start of circle
+        g.append(g1(x=center_x + radius, y=center_y, z=z, f=z_speed))
+        # Alternate between G2 (CW) and G3 (CCW)
+
+        g.append(f"G2 I{-radius:.3f} J0 F{travel_speed} ; CW circle")
+
+        g.append(f"G3 I{-radius:.3f} J0 F{travel_speed} ; CCW circle")
+        # Flip direction for next layer
+        direction = not direction
+        z += step_z
+        
+    g.append(g1(z=start_z, f=z_speed))
+    
+    g.append(g1(x=center_x, y=center_y, f=z_speed))
+    g.append("")
+    
+def mixing_pattern_straight(g, center_x, center_y):
+    """
+    Creates back and forth motions moving down and up the vial.
+    """
+    start_z = dip_height
+    end_z = 12 + dip_height
+    step_z = 2
+    direction = True  # True = clockwise (G2), False = counterclockwise (G3)
+    
+    # little bottom dips
+    for i in range(3):
+        g.append(g1(z=start_z + 3, f=z_speed))
+        g.append(g1(z=start_z, f=z_speed))
+    g.append(g1(z=end_z, f=z_speed))  # lift up after dip
+    
+    # circle down
+    z = end_z
+    while z > start_z:
+        g.append(f"; --- Mixing circle at Z={z:.1f} ---")
+        # Move to start of circle
+        radius = vial_radius(z - dip_height)   # subtract off z position at bottom of vial to get relative z
+        # Alternate between left/right and forward/backward
+        if direction:
+            g.append(g1(x=center_x, y=center_y + radius, z=z, f=travel_speed))
+            g.append(g1(x=center_x, y=center_y - radius, z=z, f=travel_speed))
+            g.append(g1(x=center_x, y=center_y + radius, z=z, f=travel_speed))
+            g.append(g1(x=center_x, y=center_y - radius, z=z, f=travel_speed))
+        else:
+            g.append(g1(x=center_x + radius, y=center_y, z=z, f=travel_speed))
+            g.append(g1(x=center_x - radius, y=center_y, z=z, f=travel_speed))
+            g.append(g1(x=center_x + radius, y=center_y, z=z, f=travel_speed))
+            g.append(g1(x=center_x - radius, y=center_y, z=z, f=travel_speed))
+        # Flip direction for next layer
+        direction = not direction
+        z -= step_z
+
+    z = start_z
+    while z <= end_z:
+        g.append(f"; --- Mixing circle at Z={z:.1f} ---")
+        radius = vial_radius(z - dip_height)   # subtract off z position at bottom of vial to get relative z
+        # Alternate between left/right and forward/backward
+        if direction:
+            g.append(g1(x=center_x, y=center_y + radius, z=z, f=travel_speed))
+            g.append(g1(x=center_x, y=center_y - radius, z=z, f=travel_speed))
+            g.append(g1(x=center_x, y=center_y + radius, z=z, f=travel_speed))
+            g.append(g1(x=center_x, y=center_y - radius, z=z, f=travel_speed))
+        else:
+            g.append(g1(x=center_x + radius, y=center_y, z=z, f=travel_speed))
+            g.append(g1(x=center_x - radius, y=center_y, z=z, f=travel_speed))
+            g.append(g1(x=center_x + radius, y=center_y, z=z, f=travel_speed))
+            g.append(g1(x=center_x - radius, y=center_y, z=z, f=travel_speed))
+        # Flip direction for next layer
+        direction = not direction
+        z += step_z
+    
+    # dip down and up
+    g.append(g1(x=center_x, y=center_y, f=travel_speed))
+    g.append(g1(z=start_z, f=z_speed))
+    
+    # touch edges
+    z = 26
+    g.append(g1(z=z, f=z_speed))
+    radius = vial_radius(z - dip_height)
+    g.append(g1(x=center_x + radius, y=center_y, f=travel_speed))
+    g.append(g1(x=center_x - radius, y=center_y, f=travel_speed))
+    g.append(g1(x=center_x, y=center_y, f=travel_speed))
+      
+    g.append("")
+
+
+def reservoir_dip(g):
+    """Dip into reservoir with a placeholder for mixing pattern."""
+    x, y = reservoir
+    g.append(f"; --- RESERVOIR DIP at X{x} Y{y} ---")
+    g.append(g1(x=x, y=y, f=travel_speed))
+    g.append(g1(z=dip_height, f=z_speed))
+    
+    g.append("; MIXING PATTERN START")
+    mixing_pattern_straight(g, x, y)
+    g.append("; MIXING PATTERN END")
+    
+    g.append(g1(z=lift_height, f=z_speed))
+    g.append("")
+
+def plate_dip(g, x, y, z):
+    """Dip at a plate position."""
+    g.append(f"; --- PLATE DIP at X{x} Y{y} ---")
+    g.append(g1(x=x, y=y, f=travel_speed))
+    g.append(g1(z=z, f=z_speed))
+    g.append(f"G4 S{pause_time} ; wait")
+    g.append(g1(z=lift_height, f=z_speed))
+    g.append("")
+
+# === MAIN GENERATION ===
+gcode = []
+
+gcode += [
+    "; ====== SETUP ======",
+    "M107                  ; Fan off",
+    "M17                   ; Enable steppers",
+    "M302 S0               ; Allow cold moves",
+    "G21                   ; Units in mm",
+    "G90                   ; Absolute positioning",
+    "G28 X Y Z              ; Home x, y",
+    g1(z=lift_height, f=z_speed),
+    "",
+]
+
+# Generate cycles for all plates
+for i in range(num_plates):
+    y_plate = plate_start[1] + i * plate_spacing
+    x_plate = plate_start[0]
+    gcode.append(f"; ====== PLATE {i+1} SEQUENCE ======")
+    reservoir_dip(gcode)
+    plate_dip(gcode, x_plate, y_plate, plate_height)
+
+# Finish sequence
+gcode += [
+    "; --- FINISH ---",
+    g1(z=lift_height + 10, f=z_speed),
+    g1(x=0, y=200, f=travel_speed),
+    "M84 ; Disable steppers",
+    "; ====== END ======",
+]
+
+# Write to file
+with open(output_file, "w") as f:
+    f.write("\n".join(gcode))
+
+print(f"G-code file written to: {output_file}")</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Mixing and Testing</h3>
+
+            <h3>Documentation</h3>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/noahsaxenian" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/noah-saxenian" target="_blank">LinkedIn</a>
+            <a href="mailto:noahsaxenian@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../project-toggles.js"></script>
+    <script src="../code-blocks.js"></script>
+</body>
+</html>
