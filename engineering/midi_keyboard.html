@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDI Keyboard - Noah Saxenian</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Noah Saxenian</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link active">Engineering</a></li>
+                <li><a href="../art.html" class="nav-link">Art</a></li>
+                <li><a href="../resume.html" class="nav-link">Resume</a></li>
+                <li><a href="../contact.html" class="nav-link">About Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container project-detail">
+        <a href="../index.html" class="back-link">← Back to Engineering Projects</a>
+
+        <!-- Project Header -->
+        <section class="detail-header">
+            <h1>MIDI Keyboard</h1>
+            <p class="project-date">October 2023</p>
+            <div class="project-tags">
+                <span class="tag">Embedded Systems</span>
+                <span class="tag">Electronics</span>
+                <span class="tag">Programming</span>
+                <span class="tag">Laser Cutting</span>
+            </div>
+        </section>
+
+        <!-- Project Summary -->
+        <section class="project-summary">
+            <p>
+                <em>
+                    A laser-cut Bluetooth MIDI keyboard with pressure sensitive keys and programmable chord buttons.
+                </em>
+            </p>
+        </section>
+
+        <section class="detail-content">
+            <h2>Goal</h2>
+            <p>
+                Design and build a musical instrument using the Bluetooth MIDI protocol, incorporating sensors, actuators,
+                MQTT communication, and a separate Dahal board with an integrated LCD screen and buttons.
+            </p>
+
+        <!-- Demo Video -->
+            <h2>Demo Video</h2>
+            <div class="content-full-image">
+                <div class="video-container">
+                    <iframe
+                        src="https://www.youtube.com/embed/WUSlR5z8O4k"
+                        title="MIDI Keyboard Demo"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="image-caption">Bluetooth MIDI Keyboard in operation</p>
+            </div>
+
+            <h2>Features</h2>
+            
+
+            <div class="content-row">
+                <div class="content-text">
+                    <ul>
+                        <li>Full octave of pressure-sensitive keys using force sensitive resistors (FSRs)</li>
+                        <li>Six programmable chord buttons supporting major, minor, and dominant chords</li>
+                        <li>Onboard volume control knob</li>
+                        <li>Indicator LEDs for BLE and UART status</li>
+                        <li>Compact, laser-cut wooden enclosure</li>
+                    </ul>
+                </div>
+                <div class="content-image">
+                    <img src="images/midi/top_view.jpg" alt="Top">
+                </div>
+            </div>
+            
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h2>Design</h2>
+                </button>
+                <div class="toggle-content">
+                    <p>
+                        The enclosure and key mechanism were designed to be fully laser cut, enabling fast fabrication and clean
+                        assembly. The final design balances aesthetics, durability, and ease of access for electronics.
+                        <a href="https://cad.onshape.com/documents/4a69d00ba2aa2652ff5a4897/w/3488e3e688e448dba16d5af3/e/00b0e48f922b3e390740ae09?renderMode=0&uiState=67194557c04e9a40fa0e75fa"
+                        target="_blank" rel="noopener">View full CAD model</a>
+                    </p>
+
+                    <h3>Keys</h3>
+                    <div class="content-row">
+                        <div class="content-text">
+                            <p>
+                                Each key is cut on three sides to remain attached to the top plate, forming a flexure hinge. Additional
+                                layers of wood were glued on top to increase stiffness. A small foam pad under each key distributes force
+                                evenly onto the FSR and provides spring return.
+                            </p>
+                        </div>
+                        <div class="content-image">
+                            <img src="images/midi/internals1.jpg" alt="Top">
+                            <p class="image-caption">Key Internals</p>
+                        </div>
+                    </div>
+                    
+
+                    <h3>Buttons</h3>
+                    <div class="content-row">
+                        <div class="content-text">
+                            <p>
+                                Six chord buttons are mounted on an internal laser-cut platform. Slits in the top panel allow the wood
+                                to flex locally, enabling individual button presses while maintaining a clean exterior.
+                            </p>
+                        </div>
+                        <div class="content-image">
+                            <img src="images/midi/internals2.png" alt="Top">
+                            <p class="image-caption">Button Internals</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h2>Electronics</h2>
+                </button>
+                <div class="toggle-content">
+                    <div class="content-row">
+                        <div class="content-text">
+                            <p>
+                                A Raspberry Pi Pico W manages key scanning, button inputs, UART communication, and Bluetooth MIDI output.
+                                A separate Dahal board (ESP32-C3-based) handles chord selection, volume control, and the LCD interface.
+                            </p>
+                            <ul>
+                                <li>13 FSRs read through a CD74HC4067 16-channel analog multiplexer</li>
+                                <li>Six digital push buttons for chord triggering</li>
+                                <li>UART communication between Pico W and Dahal board</li>
+                                <li>I2C-controlled LCD display on the Dahal board</li>
+                                <li>Status LEDs for BLE and UART communication</li>
+                            </ul>
+                        </div>
+                        <div class="content-image">
+                            <img src="images/midi/schematic.jpg" alt="Top">
+                            <p class="image-caption">Wiring Schematic</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Code</h2>
+                    <p>
+                        While MQTT was initially planned for communication, unreliable connections led to a UART-based solution.
+                        In the end, this was a valuable protocol for me to learn, as I felt a good grasp on MQTT already.
+                    </p>
+
+                    <h3>Pico W:</h3>
+                    <p>
+                        <code>midi_controller.py</code> was written to run on the Pico. It starts by initializing all the pin inputs and outputs, then connecting to Bluetooth. Once it’s connected successfully, it spins up four main tasks using asyncio that run continuously. This includes methods to confirm an active Bluetooth connection, receive UART messages, check the button states, and read the values of each FSR through the multiplexer. The most demonstrative of my learning are detailed below
+                    </p>
+                    <div class="toggle-section toggle-option">
+                        <button class="toggle-header">
+                            <span class="toggle-icon">▶</span>
+                            <p><code>check_uart()</code></p>
+                        </button>
+                        <div class="toggle-content">
+                            <p>Getting UART to work properly was harder than expected. I finally got consistent results by standardizing the number of bytes that was sent at a time (30).</p>
+                            <div class="code-block">
+                                <div class="code-block-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="code-copy-btn">Copy</button>
+                                </div>
+                                <pre><code class="language-python">async def check_uart(self):
+    # read data from UART connection
+    while True:
+        if self.uart.any():
+            # Read the data
+            received_data = self.uart.read(30) # expecting 30 byte chunks
+            await asyncio.sleep_ms(1)
+            try:
+                # Attempt to decode the data
+                msg = received_data.decode()
+                print("Received from ESP32:", msg)
+                # Split the string by commas
+                values = msg.split(',')
+                if len(values) == 7: # confirm that data is in expected format - 7 comma separated values
+                    self.uart_led.value(1) # indicate good reading
+                    # Convert the first 6 values to integers
+                    int_values = list(map(int, values[:-1]))
+                    for i in range(6):
+                        self.button_chords[i] = chords[int_values[i]] # map interger indices to chord names
+                    # Convert the last value to float
+                    self.volume = float(values[-1][:3]) # volume multiplier from potentiometer
+                else: self.uard_led.value(0) # indicate bad reading
+            except Exception as e:
+                print("Received data could not be decoded:", e)
+                self.uart_led.value(0)      # indicate bad reading
+        await asyncio.sleep(0.3)</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-section toggle-option">
+                        <button class="toggle-header">
+                            <span class="toggle-icon">▶</span>
+                            <p><code>check_all_keys()</code></p>
+                        </button>
+                        <div class="toggle-content">
+                            <p>Using the multiplexer was not too difficult. ChatGPT helped quickly write the function to select a channel, and the check_all_keys() function just loops through each one and determines a velocity value from the analog input.</p>
+                            <div class="code-block">
+                                <div class="code-block-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="code-copy-btn">Copy</button>
+                                </div>
+                                <pre><code class="language-python"># Function to select a channel on the multiplexer
+def select_channel(self, channel):
+    self.s0.value(channel & 1)
+    self.s1.value((channel >> 1) & 1)
+    self.s2.value((channel >> 2) & 1)
+    self.s3.value((channel >> 3) & 1)
+    
+async def check_all_keys(self):
+    minval = 10000
+    maxval = 60000
+    while True:
+        for i in range(13):
+            self.select_channel(i)
+            time.sleep_us(10)  # Small delay to settle switching
+            reading = self.key.read_u16()  # Read ADC value (0-65535)
+            if reading > minval:
+                volume = int((((reading - minval) / (maxval - minval)) * 127))
+                if self.last_volumes[i] == 0:
+                    self.play_note(self.key_notes[i], octave=self.key_octaves[i], velocity=volume)
+            else:
+                volume = 0
+                if self.last_volumes[i] != 0:
+                    self.play_note(self.key_notes[i], octave=self.key_octaves[i], velocity=0, on=False)
+            self.last_volumes[i] = volume
+            await asyncio.sleep_ms(10)</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-section toggle-option">
+                        <button class="toggle-header">
+                            <span class="toggle-icon">▶</span>
+                            <p><code>play_chord()</code></p>
+                        </button>
+                        <div class="toggle-content">
+                            <p>Sending notes over Bluetooth was not too hard to get working by modifying example code. I did also write a “play_chord” function that takes the name of a chord, such as “CM7” for C major seven, and sends the individual note MIDI commands:</p>
+                            <div class="code-block">
+                                <div class="code-block-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="code-copy-btn">Copy</button>
+                                </div>
+                                <pre><code class="language-python">def play_chord(self, chord_name, octave=2, velocity=64, on=True):
+    # play a chord based on chord name (supports major, minor, dominant)
+    chord_type = chord_name[-2] # second to last character should be -, M, or note
+    # define intervals from root
+    if chord_type == '-':
+        intervals = [0, 3, 7, 10] # minor 7 chord
+    elif chord_type == 'M':
+        intervals = [0, 4, 7, 11] # major 7 chord
+    else:
+        intervals = [0, 4, 7, 10] # dominant 7 chord
+    
+    # determine name of root
+    if chord_name[1] == '#':
+        root_name = chord_name[:2]
+    else: root_name = chord_name[0]
+    
+    # get midi number of root
+    root_num = notes[root_name] + 12 * (octave + 2)
+    
+    # play each note in chord
+    for interval in intervals:
+        if on:
+            self.send_midi(root_num+interval, velocity, NoteOn)
+        else:
+            self.send_midi(root_num+interval, velocity, NoteOff)</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Dahal Board:</h3>
+                    <div class="content-row">
+                        <div class="content-text">
+                            <p>
+                                <code>midi_display.py</code> was written to use the Dahal board as a tool to select chords for the six buttons on the keyboard.  Learning to interface with the display over I2C was fun! The two most important functions are detailed below. Also of note are the callbacks for each button press to change the position and value of the selector, and the integration of the potentiometer as a volume control knob. The display functionality is shown to the right.
+                            </p>
+                        </div>
+                        <div class="content-image">
+                            <div class="video-container">
+                                <iframe
+                                    src="https://www.youtube.com/embed/H7PMUj6Zepw"
+                                    title="MIDI Keyboard Demo"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <p class="image-caption">Midi Display Demo</p>
+                        </div>
+                    </div>
+
+                    <div class="toggle-section toggle-option">
+                        <button class="toggle-header">
+                            <span class="toggle-icon">▶</span>
+                            <p><code>draw_chords()</code></p>
+                        </button>
+                        <div class="toggle-content">
+                            <p>This function writes the chord names and button numbers on the screen. It takes into account the length of the name to keep it centered. If the selector is selected, it writes the text black so that it shows on the highlighted box.</p>
+                            <div class="code-block">
+                                <div class="code-block-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="code-copy-btn">Copy</button>
+                                </div>
+                                <pre><code class="language-python">def draw_chords(self):
+    # draw the chord names and button numbers
+    if self.selected: color = 0
+    else: color = 1
+    for i in range(6):
+        name = self.chords[self.selected_chords[i]]
+        m = i % 3
+        if len(name) == 2:
+            x_pos = 40*m+15
+        elif len(name) == 3:
+            x_pos = 40*m+11
+        else:
+            x_pos = 40*m+7
+        if i < 3:
+            y_pos = 10
+        else:
+            y_pos = 40
+        if self.selected and self.selector == i+1:
+            color = 0
+        else: color = 1
+        self.oled.text(name, x_pos, y_pos, color)
+        self.oled.text(f'{i+1}', 40*m+20, y_pos+10, color)</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-section toggle-option">
+                        <button class="toggle-header">
+                            <span class="toggle-icon">▶</span>
+                            <p><code>draw_selector()</code></p>
+                        </button>
+                        <div class="toggle-content">
+                            <p>This method does some math to determine the location of the selector box, also filling it in if selected.</p>
+                            <div class="code-block">
+                                <div class="code-block-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="code-copy-btn">Copy</button>
+                                </div>
+                                <pre><code class="language-python">def draw_selector(self):
+    # draw the selector box in correct position
+    pos = self.selector
+    # Position 1-6, 0 clears
+    for i in range(6):
+        if i < 3:
+            self.oled.rect(i*40+3, 5, 40, 26, 0, True)
+        else:
+            self.oled.rect((i-3)*40+3, 35, 40, 26, 0, True)
+    if pos != 0 and pos <= 6:
+        pos = pos-1
+        if pos < 3:
+            self.oled.rect(pos*40+3, 5, 40, 26, 1, self.selected)
+        else:
+            self.oled.rect((pos-3)*40+3, 35, 40, 26, 1, self.selected)</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>
+                        <a href="https://youtu.be/H7PMUj6Zepw" target="_blank" rel="noopener">View LCD interface demo</a>
+                    </p>
+
+        <h2>Repository</h2>
+            <div class="project-links">
+                <a href="https://github.com/noahsaxenian/ME35-Robotics/tree/main" target="_blank" class="button">
+                    View on GitHub
+                </a>
+            </div>
+
+        <h2>Reflections</h2>
+        <p>
+            With all its moving parts, this project was incredibly engaging to work on! While I was waiting for the force sensors to arrive, I worked on getting the LCD display up and running, and developing the CAD model. That put me in a good place to figure out the mechanics of getting all the keys working and integrating everything together.
+        </p>
+        <p>
+            As mentioned above, the lack of MQTT communication was a blessing, as UART is both better fit for this task (as the two boards are both in the same box) and was a more valuable learning process for me (I hadn’t gotten UART to work in the past).
+        </p>
+    </section>
+
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/noahsaxenian" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/noah-saxenian" target="_blank">LinkedIn</a>
+            <a href="mailto:noahsaxenian@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../project-toggles.js"></script>
+    <script src="../table-of-contents.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+</body>
+</html>

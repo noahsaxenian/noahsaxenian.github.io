@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miss Silvia PID Control - Noah Saxenian</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Noah Saxenian</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link active">Engineering</a></li>
+                <li><a href="../art.html" class="nav-link">Art</a></li>
+                <li><a href="../resume.html" class="nav-link">Resume</a></li>
+                <li><a href="../contact.html" class="nav-link">About Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container project-detail">
+        <a href="../index.html" class="back-link">← Back to Engineering Projects</a>
+
+        <!-- Project Header -->
+        <section class="detail-header">
+            <h1>Miss Silvia PID Control</h1>
+            <p class="project-date">2025</p>
+            <div class="project-tags">
+                <span class="tag">Controls</span>
+                <span class="tag">Embedded Systems</span>
+                <span class="tag">Electronics</span>
+                <span class="tag">Fabrication</span>
+            </div>
+        </section>
+
+        <!-- Project Summary -->
+        <section class="project-summary">
+            <p>
+                <em>
+                    I designed and installed a low-cost, tunable PID temperature controller for a Rancilio Silvia espresso
+                    machine, replacing the stock thermostat to dramatically reduce temperature fluctuations and improve
+                    brew consistency.
+                </em>
+            </p>
+        </section>
+
+        <!-- Main Content -->
+        <section class="detail-content">
+
+            <h2>Motivation</h2>
+            <p>
+                Most consumer espresso machines rely on a simple on/off thermostat, which causes large temperature
+                oscillations during heating. These fluctuations can exceed 10&nbsp;°C, leading to inconsistent extraction.
+                I designed a precise PID controller using low-cost electronics to maintain a stable boiler temperature
+                while preserving usability and reversibility.
+            </p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li>Adjustable brew and steam temperatures</li>
+                <li>Programmable PID values for precise heating control</li>
+                <li>LCD temperature display with rotary encoder input</li>
+                <li>Web-based control panel with live temperature graphs</li>
+                <li>Scheduled automatic heating</li>
+            </ul>
+
+            <!-- Demo Video -->
+            <h2>Demo Video</h2>
+            <div class="content-full-image">
+                <div class="video-container">
+                    <iframe
+                        src="https://www.youtube.com/embed/PiXdVVWWP_A"
+                        title="Miss Silvia PID Controller Demo"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="image-caption">PID-controlled espresso machine in operation</p>
+            </div>
+
+            <!-- Comparison Images -->
+            <h2>Temperature Control Comparison</h2>
+            <p>
+                Below is a comparison of the machine heating behavior with and without the PID controller. The stock
+                thermostat exhibits a large overshoot and oscillation, while the PID controller produces a smooth,
+                well-damped response.
+            </p>
+
+            <div class="image-grid-2">
+                <div class="grid-item">
+                    <img src="images/silvia_pid/no_pid.png" alt="Heating without PID controller">
+                    <p class="image-caption">Machine heating without controller</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/silvia_pid/with_pid.png" alt="Heating with PID controller">
+                    <p class="image-caption">Machine heating with PID controller</p>
+                </div>
+            </div>
+
+            <!-- Design Principles -->
+            <h2>Design Principles</h2>
+            <ul>
+                <li>
+                    <strong>Usability:</strong> A single rotary knob interface preserves the original user experience.
+                    Anyone familiar with the machine can operate it without training.
+                </li>
+                <li>
+                    <strong>Cost:</strong> All components were selected to minimize cost while maintaining reliability,
+                    keeping the project accessible and reproducible.
+                </li>
+                <li>
+                    <strong>Reversibility:</strong> Only two small mounting holes were added; the machine can easily be
+                    returned to its original configuration.
+                </li>
+            </ul>
+
+            <!-- Webpage -->
+            <h2>Web Interface</h2>
+            <p>
+                The ESP32 hosts a local web application that allows full control and monitoring of the system. The page
+                includes power controls, brew/steam mode selection, live temperature plots, scheduling, and PID tuning.
+                Settings are stored on the microcontroller and persist across reboots.
+            </p>
+
+            <div class="image-grid-2">
+                <div class="grid-item">
+                    <img src="images/silvia_pid/web_ui_1.png" alt="Web interface main view">
+                </div>
+                <div class="grid-item">
+                    <img src="images/silvia_pid/web_ui_2.png" alt="Web interface settings">
+                </div>
+            </div>
+
+            <!-- Components -->
+            <h2>Components</h2>
+            <p>
+                Products are linked below. Many can be sourced more cheaply from vendors such as AliExpress.
+            </p>
+            <ul>
+                <li>
+                    <a href="https://www.amazon.com/ESP32C6-Supports-Bluetooth-802-15-4-Microsoft/dp/B0D2NKVB34/ref=sr_1_1_sspa?crid=1G8DETU5OQVYS&dib=eyJ2IjoiMSJ9.51pJXpI7mfeiAGyq_6CySDZmSRHQJRm6hHmIh9DZ41u1FndhflO0eRL58xLqVR1h_JZORSmAjC5sYTg_o1vmDJHnDrYyT4kS88Ccbirwm5LB4__acs05thvHGpE5J1TMaiiRtvUQ_2hW6b5LS3mIxC4AQebVqV7Yw02F_bC_aX5Kkx5npfwadCe7hlZ2o5kij26KegNTsAW0R7sugc4ztb930vDw6PmqavI6XdK-ImM.hqglGugKZA03uZ41CM1qhY49eAunwxPYbazde0I9PtE&dib_tag=se&keywords=esp32c6&qid=1753636497&sprefix=esp32c%2Caps%2C159&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1"
+                    target="_blank" rel="noopener noreferrer">
+                        ESP32-C6 microcontroller
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.digikey.com/en/products/detail/innovative-sensor-technology-usa-division/TSIC-306-TO92/13181022"
+                    target="_blank" rel="noopener noreferrer">
+                        TSIC306 TO-92 temperature sensor
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.amazon.com/Inkbird-Solid-Thermostat-Temperature-Controller/dp/B00HV974KC/ref=sr_1_1_sspa?dib=eyJ2IjoiMSJ9.BluIUXK8iU962y3Kd1dSIMCT09ZyqSoW1JAx7ilXVRRpHc2iiPlePi6MOX1_AKunmnnhAdIf62Nb97L6uWMEQB9ud76t3Ph7--KP5fYRejEHh915i71B29lKYwKqrm4g0xxvSYpR7MSigWFfljBaeNhX6_LHVE7wiTnR_1B45ami3L-6zycTACt5x56tGZ4FVdMhd7Hs1owci13k9ywUOxjiT09jhdFNKKYmMNIzoJg.7M8Urpt00XvmKEQW1RcY1Q-DE3WZk_OGK3XMUqmrQfM&dib_tag=se&keywords=ssr+40+da&qid=1753633765&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1"
+                    target="_blank" rel="noopener noreferrer">
+                        SSR 40A DA (3–32VDC input, 24–380VAC output)
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.amazon.com/Hosyond-Display-Self-Luminous-Compatible-Raspberry/dp/B09T6SJBV5?ref_=ast_sto_dp&th=1"
+                    target="_blank" rel="noopener noreferrer">
+                        SSD1306 0.96&quot; OLED I²C display
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.amazon.com/VILHTL-KY-040-Encoder-Development-Arduino%EF%BC%88Pack/dp/B0DNMFFTGX/ref=sr_1_1_sspa?crid=17DV33P1HROWF&dib=eyJ2IjoiMSJ9.kgY8Rvz4KDXdCnKIgtxIrQAfl_nj0FSD8fS7E3I3Rz0rnNe6ec2Ydy7ShTvfq9H4DF0NeT-_uk628EBHsr-JXRHlJIAaDddJ4kf7OkMvYpgnSVznPnXsToiX-Ybndj4D-6B4WCdLTublTVQjMIchR6D3LGTPoCxuJVOxuB1VvNYfcFXn7W50DceO-CNxcdmd.6q8NNlLorKvTxiK1ceRBZgaomiewn6d3G76TXCGNHVE&dib_tag=se&keywords=KY-040+Rotary+Encoder+Module&qid=1753636707&s=electronics&sprefix=ky-040+rotary+encoder+module%2Celectronics%2C129&sr=1-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1"
+                    target="_blank" rel="noopener noreferrer">
+                        KY-040 rotary encoder module
+                    </a>
+                </li>
+
+                <li>USB wall charger and USB-C cable (for powering ESP)</li>
+
+                <li>
+                    <a href="https://cad.onshape.com/documents/fad365c2e571097730922e91/w/67505d48e3443e80230c7695/e/7c0b61bd32682dd326cb2e0a?renderMode=0&uiState=6890da7f4dc08f57801d85e8"
+                    target="_blank" rel="noopener noreferrer">
+                        3D printed housing (Onshape CAD)
+                    </a>
+                </li>
+
+                <li>Jumper wires and hookup wire</li>
+            </ul>
+
+
+            <!-- Hardware Installation -->
+            <h2>Hardware Installation</h2>
+
+            <div class="content-row">
+                <div class="content-text">
+                    <p>
+                        The solid state relay (SSR) is bolted to the internal metal frame using thermal paste, allowing the frame
+                        to act as a heat sink. The SSR replaces the brew thermostat but can still be overridden by the steam
+                        switch. The steam thermostat remains in place as a safety cutoff.
+                    </p>
+                    <p>The TSIC306 temperature sensor is mounted under one of the boiler bolts, with a rubber washer to secure it and some thermal paste as well.</p>
+
+                </div>
+                <div class="content-image">
+                    <img src="images/silvia_pid/schematic.jpeg" alt="Schematic">
+                    <p class="image-caption">Wiring Schematic</p>
+                </div>
+            </div>
+            
+            <div class="content-row">
+                <div class="content-image">
+                    <img src="images/silvia_pid/ssr_mount.jpeg" alt="SSR mounted to frame">
+                    <p class="image-caption">SSR mounted to the machine frame</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/silvia_pid/temp_sensor.jpeg" alt="Temperature sensor mounted">
+                    <p class="image-caption">Temperature sensor mounted to boiler bolt</p>
+                </div>
+            </div>
+
+            
+
+            <div class="image-grid-3">
+                <div class="grid-item">
+                    <p>
+                        The USB power supply is spliced into the main power line so the controller remains powered even when the
+                        machine is switched off. The electronics are assembled on a prototyping board and mounted inside a
+                        3D-printed enclosure secured beneath the machine.
+                    </p>
+                    <img src="images/silvia_pid/housing.png">
+                </div>
+                <div class="grid-item">
+                    <img src="images/silvia_pid/pcb1.jpeg">
+                </div>
+                <div class="grid-item">
+                    <img src="images/silvia_pid/pcb2.jpeg">
+                </div>
+            </div>
+
+
+
+            <!-- Code -->
+            <h2>Software Architecture</h2>
+            <p>
+                The ESP32 runs MicroPython. The software is organized around a controller class and a webserver class.
+                The main script initializes hardware, reads the temperature sensor, drives the SSR using PWM, updates
+                the display, and services web requests.
+            </p>
+
+            <ul>
+                <li>Settings saved to file and restored on reboot</li>
+                <li>Failsafe shutdown using try/except handling</li>
+                <li>Error logging for debugging without a serial connection</li>
+            </ul>
+
+            <!-- Links -->
+            <h2>Repository</h2>
+            <div class="project-links">
+                <a href="https://github.com/noahsaxenian/EspressoControl" target="_blank" class="button">
+                    View on GitHub
+                </a>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/noahsaxenian" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/noah-saxenian" target="_blank">LinkedIn</a>
+            <a href="mailto:noahsaxenian@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../project-toggles.js"></script>
+    <script src="../table-of-contents.js"></script>
+</body>
+</html>
