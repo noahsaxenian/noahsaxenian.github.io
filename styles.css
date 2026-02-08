@@ -946,6 +946,10 @@ footer p {
     .two-column {
         grid-template-columns: 1fr;
     }
+
+    .two-column-big-left {
+        grid-template-columns: 1fr;
+    }
     
     .image-grid-2,
     .image-grid-3 {
