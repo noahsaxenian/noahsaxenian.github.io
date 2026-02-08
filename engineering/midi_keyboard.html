@@ -99,7 +99,7 @@
                     </p>
 
                     <h3>Keys</h3>
-                    <div class="content-row">
+                    <div class="content-row" style="--col-a: 2fr; --col-b: 1fr;">
                         <div class="content-text">
                             <p>
                                 Each key is cut on three sides to remain attached to the top plate, forming a flexure hinge. Additional
@@ -115,7 +115,7 @@
                     
 
                     <h3>Buttons</h3>
-                    <div class="content-row">
+                    <div class="content-row" style="--col-a: 2fr; --col-b: 1fr;">
                         <div class="content-text">
                             <p>
                                 Six chord buttons are mounted on an internal laser-cut platform. Slits in the top panel allow the wood
@@ -164,7 +164,7 @@
                         In the end, this was a valuable protocol for me to learn, as I felt a good grasp on MQTT already.
                     </p>
 
-                    <h3>Pico W:</h3>
+                    <h3>Pico W</h3>
                     <p>
                         <code>midi_controller.py</code> was written to run on the Pico. It starts by initializing all the pin inputs and outputs, then connecting to Bluetooth. Once it’s connected successfully, it spins up four main tasks using asyncio that run continuously. This includes methods to confirm an active Bluetooth connection, receive UART messages, check the button states, and read the values of each FSR through the multiplexer. The most demonstrative of my learning are detailed below
                     </p>
@@ -292,7 +292,7 @@ async def check_all_keys(self):
                         </div>
                     </div>
 
-                    <h3>Dahal Board:</h3>
+                    <h3>Dahal Board</h3>
                     <div class="content-row">
                         <div class="content-text">
                             <p>
@@ -382,9 +382,6 @@ async def check_all_keys(self):
                         </div>
                     </div>
 
-                    <p>
-                        <a href="https://youtu.be/H7PMUj6Zepw" target="_blank" rel="noopener">View LCD interface demo</a>
-                    </p>
 
         <h2>Repository</h2>
             <div class="project-links">

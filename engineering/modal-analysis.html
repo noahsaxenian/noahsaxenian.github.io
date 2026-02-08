@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Analysis - Noah Saxenian</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Noah Saxenian</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link active">Engineering</a></li>
+                <li><a href="../art.html" class="nav-link">Art</a></li>
+                <li><a href="../resume.html" class="nav-link">Resume</a></li>
+                <li><a href="../contact.html" class="nav-link">About Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container project-detail">
+        <a href="../index.html" class="back-link">← Back to Engineering Projects</a>
+
+        <!-- Project Header -->
+        <section class="detail-header">
+            <h1>Modal Analysis</h1>
+            <p class="project-date">October 2023</p>
+            <div class="project-tags">
+                <span class="tag">Acoustics</span>
+                <span class="tag">Python</span>
+                <span class="tag">Signal Processing</span>
+                <span class="tag">Data Analysis</span>
+            </div>
+        </section>
+
+        <!-- Project Summary -->
+        <section class="project-summary">
+            <p>
+                <em>
+                    Development of acoustic testing procedures to gather reliable vibration data, reconstruct frequency response functions, and visualize mode shapes.
+                </em>
+            </p>
+            <p>
+                <em>
+                    From a Summer 2024 internship at the Tufts Center for Engineering Education and Outreach.
+                </em>
+            </p>
+        </section>
+
+        <section class="detail-content">
+            <h2>Goal</h2>
+            <p>
+                Development of acoustic testing procedures to gather reliable vibration data, reconstruct frequency response functions, and visualize mode shapes. 
+            </p>
+
+        <!-- Demo Video -->
+            <h2>Demo Video</h2>
+            <div class="content-full-image">
+                <div class="video-container">
+                    <iframe
+                        src="https://www.youtube.com/embed/EjQXyZ1NxkY"
+                        title="Modal Analysis Demo Demo"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="image-caption">Video demonstration of my work</p>
+            </div>
+
+            <h2>Procedure for Modal Analysis</h2>
+        
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h2>1) Data Collection</h2>
+                </button>
+                <div class="toggle-content">
+                    <div class="content-row">
+                        <div class="content-text">
+                            <p>
+                                The process starts by exciting an object (in this case the metal plate) and measuring its response. In this case, I am using a small modal impact hammer to tap the plate, and a laser vibrometer to measure the velocity of the plate over time.
+                            </p>
+                        </div>
+                        <div class="content-image">
+                            <img src="images/modal_analysis/impact_hammer.webp" alt="Top">
+                            <p class="image-caption">Impact Hammer</p>
+                        </div>
+                    </div>
+                    
+
+                    <h3>Automatic Hammer Actuator</h3>
+                    <p>
+                        Six chord buttons are mounted on an internal laser-cut platform. Slits in the top panel allow the wood
+                        to flex locally, enabling individual button presses while maintaining a clean exterior.
+                    </p>
+                    <div class="content-row" style="--col-a: 3fr; --col-b: 4fr; margin-left: 7rem; margin-right: 7rem;">
+                        <div class="grid-item">
+                            <video controls width="100%" playsinline>
+                                <source src="images/modal_analysis/hammer_actuator.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <p class="image-caption">Demo of actuator striking metal plate</p>
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/modal_analysis/robotic_arm.jpeg" alt="Top">
+                            <p class="image-caption">Hammer actuator mounted in UR Arm</p>
+                        </div>
+                    </div>
+
+                    <h3>Test Stand</h3>
+                    <p>
+                        I built the aluminum testing rig shown below to securely mount the laser to a rigid frame. The laser hits an angled mirror which reflects the beam up into the underside of the plate. The plate is balanced on four small pieces of foam suspend it and keep it isolated from the rest of the system. The frame is build from aluminum T-slot extrusions. The mounts for the laser, plate, and mirror bracket are waterjet from 1/4” aluminum, and the mount for the mirror is 3d printed.
+                        <a href="https://cad.onshape.com/documents/79f2ac5750e02108cee07216/w/1dfa311a9cfa72e04144b85a/e/ba719e91d2ffa6e2ccdd3008?renderMode=0&uiState=66aa3da251939949828c923e" target="_blank" rel="noopener">CAD files here</a>.
+                    </p>
+
+                    <div class="image-grid-2">
+                        <div class="content-image">
+                            <img src="images/modal_analysis/rig1.jpg" alt="Testing Rig">
+                        </div>
+                        <div class="content-image">
+                            <img src="images/modal_analysis/rig2.jpg" alt="Testing Rig">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h2>2) Synthesis of Raw Data</h2>
+                </button>
+                <div class="toggle-content">
+                    <p>
+                        The raw data from both the vibrometer and hammer is a time signal. I used the <a href="https://sites.google.com/view/oberlinacoustics/home" target="_blank" rel="noopener">Oberlin Acoustics App</a> to synthesize this data into a frequency response function (FRF). This converts both time signals into the frequency domain using a Fourier Transform, and then compares them to describe the relationship between the input force and the resulting output response.
+                    </p>
+
+                    <div class="content-image">
+                        <img src="images/modal_analysis/obiapp.png" alt="ObiApp">
+                        <p class="image-caption">ObiApp developed by Chris Rogers and Joseph Curtin</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h2>3) Reconstruct Frequency Response Functions</h2>
+                </button>
+                <div class="toggle-content">
+                    <p>
+                        Here I implemented a modal analysis technique called Circle Fitting to reconstruct the frequency response functions synthesized above. The goal of this step is to fit a mathematical model of the FRF behavior to the frequency domain data.
+                    </p>
+
+                    <p>
+                        Circle Fitting is a single degree of freedom (SDOF) technique, meaning it looks at only one resonance peak at a time. This relies on a major assumption: the peaks are spaced far enough apart to barely impact each other.
+                    </p>
+
+                    <div class="content-row" style="--col-a: 1fr; --col-b: 2fr;">
+                        <div class="content-text">
+                            <h4>Step 1:</h4>
+                                <p>
+                                    Identify approximate locations of each resonant frequency (peaks) on experimental data.
+                                </p>
+                        </div>
+                        <div class="content-img">
+                            <img src="images/modal_analysis/step1.png" alt="ObiApp">
+                        </div>
+                    </div>
+                    <div class="content-row" style="--col-a: 1fr; --col-b: 2fr;">
+                        <div class="content-text">
+                            <h4>Step 2:</h4>
+                                <p>
+                                    Fit a circle to each peak to estimate resonant frequency, damping factor, and modal constant.
+                                </p>
+                        </div>
+                        <div class="content-img">
+                            <img src="images/modal_analysis/step2.png" alt="ObiApp">
+                        </div>
+                    </div>
+                    <div class="content-row" style="--col-a: 1fr; --col-b: 2fr;">
+                        <div class="content-text">
+                            <h4>Step 3:</h4>
+                                <p>
+                                    Reconstruct full FRF using coefficients determined above for each peak.
+                                </p>
+                        </div>
+                        <div class="content-img">
+                            <img src="images/modal_analysis/step3.png" alt="ObiApp">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h2>4) Visualize Mode Shapes</h2>
+                </button>
+                <div class="toggle-content">
+                    <p>The above process of reconstructing a frequency response function corresponds to a single impact point and a single response point. Tapping the hammer at different locations will produce different FRFs. That is to say, the magnitude and phase of modal constants will be different, but the resonant frequencies and damping coefficients should be the same — those are each properties of the modes, not the locations.</p>
+                    <div class="content-row" style="--col-a: 3fr; --col-b: 1fr;">
+                        <div class="content-text">
+                            <p>
+                                To get a more comprehensive understanding of how the test subject responds, we perform a “roving hammer test” by keeping the laser pointed at one spot and impacting at many points around the plate. In this case, I impacted 16 locations in a grid on the metal plate. By comparing the modal constants of each location — for each mode — we can reconstruct the basic motion of each mode shape.
+                            </p>
+                        </div>
+                        <div class="content-image">
+                            <img src="images/modal_analysis/top.jpg" alt="ObiApp">
+                        </div>
+                    </div>
+
+                    <h3>Mode shapes of the metal plate</h3>
+                    <div class="image-grid-3">
+                        <div class="grid-item"><img src="images/modal_analysis/mode1.gif" alt="Mode Shape"></div>
+                        <div class="grid-item"><img src="images/modal_analysis/mode2.gif" alt="Mode Shape"></div>
+                        <div class="grid-item"><img src="images/modal_analysis/mode3.gif" alt="Mode Shape"></div>
+                        <div class="grid-item"><img src="images/modal_analysis/mode4.gif" alt="Mode Shape"></div>
+                        <div class="grid-item"><img src="images/modal_analysis/mode5.gif" alt="Mode Shape"></div>
+                        <div class="grid-item"><img src="images/modal_analysis/mode6.gif" alt="Mode Shape"></div>
+                    </div>
+                    <p>Performing this procedure on a wooden plate with a cutout simulates the challenges of the f-holes on a violin, especially when we want to interpolate between measurement points.</p>
+
+                    <div class="content-row" style="--col-a: 2.25fr; --col-b: 3fr;">
+                        <div class="content-image">
+                            <img src="images/modal_analysis/wood.jpeg" alt="ObiApp">
+                            <p class="image-caption">Laser-cut wood test plate</p>
+                        </div>
+                        <div class="content-image">
+                            <img src="images/modal_analysis/cutout.gif" alt="ObiApp">
+                            <p class="image-caption">Mode shape animation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Testing on a Violin</h2>
+            <div class="content-row">
+                <div class="content-text">
+                    <p>With these tools that I developed, I performed modal analysis of a violin top plate, compared mode
+shapes with existing literature, and evaluate the performance of the analysis tools. Using a roving
+hammer impact test and laser vibrometer measurements, frequency response functions were
+collected at 75 locations and processed with a my custom circle-fitting algorithm to extract modal
+parameters. These parameters were used to reconstruct and visualize mode shapes, from which
+the CBR, A1, and B1+ signature modes were identified.
+<a href="https://github.com/noahsaxenian/noahsaxenian.github.io/blob/main/engineering/images/modal_analysis/violin_modal_analysis.pdf" target="_blank" rel="noopener">A full report on this testing is available here.</a>                    
+</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/modal_analysis/violin.gif" alt="ObiApp">
+                </div>
+            </div>
+
+            <h2>Repository</h2>
+            <div class="project-links">
+                <a href="https://github.com/noahsaxenian/CircleFit" target="_blank" class="button">View on GitHub</a>
+            </div>
+
+            <h2>Thoughts and Reflections</h2>
+            <ul>
+                <li>The hope is that this process can be applied to the analysis of musical instruments (in particular the violin). Developing a better understanding of how structural changes affect acoustics has the potential to provide valuable insight to assist makers in the construction process.</li>
+                <li>Modal analysis is hard when multiple modes have the same resonant frequencies (peaks on top of each other). My software is not currently capable of handling these scenarios, so care by the user must be taken to interpret its results.</li>
+                <li>Endless room for future development includes synthesizing data across multiple tests, overlapping peak analysis, and a more automated system to reduce the need for user input.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/noahsaxenian" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/noah-saxenian" target="_blank">LinkedIn</a>
+            <a href="mailto:noahsaxenian@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../project-toggles.js"></script>
+    <script src="../table-of-contents.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+</body>
+</html>
