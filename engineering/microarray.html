@@ -37,8 +37,6 @@
 
         <!-- Project Summary -->
         <section class="project-summary">
-            <p><strong>Description:</strong> Senior capstone project to design an efficient system of printing microarray glass slides for the standardization of Immunohistochemistry testing</p>
-            <p><strong>Group Members:</strong> Eli Singer, Theo Prince</p>
             <p><em>This is documentation of my Tufts Fall 2025 Senior Capstone Project, completed with Eli Singer and Theo Prince. We worked for Boston Cell Standards to design and prototype an efficient method of printing microarray calibrator slides for Immunohistochemistry testing.</em></p>
         </section>
 
@@ -61,6 +59,7 @@
             </div>
 
             <!-- Full Width Image -->
+             <h2>Demo Video</h2>
             <div class="content-full-image">
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/Q7NdR2hxHbA" 
@@ -154,20 +153,28 @@
             </div>
 
             <!-- Regular Section with Images -->
-            <h2>Prototyping Process</h2>
+            <!-- Collapsible Section -->
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h2>Prototyping Process</h2>
+                </button>
+                <div class="toggle-content">
             
-            <div class="content-row">
-                <div class="content-text">
-                    <p>For the first prototype, we focused on building a head, reservoir, and bed system to work with an existing XYZ Gantry system (we repurposed a Prusa Mk3 3D Printer).</p>
-                    <p><strong>My main contributions were:</strong></p>
-                    <ul>
-                        <li>Custom carriage for the printer to accept a new head</li>
-                        <li>Head design to hold microapplicators</li>
-                    </ul>
-                    <p>The first prototype was a successful proof of concept for our split head and reservoir system. We were able to write custom g-code to move the gantry as desired, and print five successful slides in a single run.</p>
-                </div>
-                <div class="content-image">
-                    <img src="images/microarray/prototype1.jpeg" alt="First Prototype" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EFirst Prototype%3C/text%3E%3C/svg%3E'">
+                    <div class="content-row">
+                        <div class="content-text">
+                            <p>For the first prototype, we focused on building a head, reservoir, and bed system to work with an existing XYZ Gantry system (we repurposed a Prusa Mk3 3D Printer).</p>
+                            <p><strong>My main contributions were:</strong></p>
+                            <ul>
+                                <li>Custom carriage for the printer to accept a new head</li>
+                                <li>Head design to hold microapplicators</li>
+                            </ul>
+                            <p>The first prototype was a successful proof of concept for our split head and reservoir system. We were able to write custom g-code to move the gantry as desired, and print five successful slides in a single run.</p>
+                        </div>
+                        <div class="content-image">
+                            <img src="images/microarray/prototype1.jpeg" alt="First Prototype">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -559,8 +566,23 @@ print(f"G-code file written to: {output_file}")</code></pre>
             </div>
 
             <h3>Mixing and Testing</h3>
+                <div class="content-row">
+                    <div class="content-text">
+                        <p>One of the most important user needs was to have an even distribution of microbeads in the final droplet.
+                            This was accomplished by moving the microapplicators in a pattern to mix the vials before dispensing.
+                        </p>
+                        <p>To validate this design solution, I performed a test of 40 printed slides.
+                            We looked at each individual droplet under a microscope and graded them qualitatively.
+                            The results of this test showed no significant trend in mixing quality over the course of the printing process. This indicates that the mixing process is sufficient to maintain a certain level of droplet quality over time.
+                        </p>
+                    </div>
+                    <div class="content-image">
+                        <img src="images/microarray/microscope_photo.jpeg" alt="Microscope Photo">
+                        <p class="image-caption">Microscope Photo of Printed Droplet</p>
+                    </div>
+                </div>
 
-            <h3>Documentation</h3>
+            <h2>Documentation</h2>
 
             <div class="project-links">
                 <a href="https://github.com/noahsaxenian/Microarray-Slide-Printer/blob/main/Final%20Report.pdf" target="_blank" class="button">Full Project Report</a>
@@ -580,6 +602,7 @@ print(f"G-code file written to: {output_file}")</code></pre>
     <script src="../script.js"></script>
     <script src="../project-toggles.js"></script>
     <script src="../code-blocks.js"></script>
+    <script src="../table-of-contents.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
