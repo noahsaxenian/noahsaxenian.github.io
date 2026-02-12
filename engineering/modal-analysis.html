@@ -6,6 +6,16 @@
     <title>Modal Analysis - Noah Saxenian</title>
     <link rel="stylesheet" href="../styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <script>
+        window.MathJax = {
+            tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
     <nav class="navbar">
@@ -26,7 +36,7 @@
         <!-- Project Header -->
         <section class="detail-header">
             <h1>Modal Analysis</h1>
-            <p class="project-date">October 2023</p>
+            <p class="project-date">August 2024</p>
             <div class="project-tags">
                 <span class="tag">Acoustics</span>
                 <span class="tag">Python</span>
@@ -96,7 +106,7 @@
                         Six chord buttons are mounted on an internal laser-cut platform. Slits in the top panel allow the wood
                         to flex locally, enabling individual button presses while maintaining a clean exterior.
                     </p>
-                    <div class="content-row" style="--col-a: 3fr; --col-b: 4fr; margin-left: 7rem; margin-right: 7rem;">
+                    <div class="content-row" style="--col-a: 3fr; --col-b: 4fr;">
                         <div class="grid-item">
                             <video controls width="100%" playsinline>
                                 <source src="images/modal_analysis/hammer_actuator.mp4" type="video/mp4">
@@ -191,6 +201,68 @@
                             <img src="images/modal_analysis/step3.png" alt="ObiApp">
                         </div>
                     </div>
+                    <div class="toggle-section toggle-option">
+                        <button class="toggle-header">
+                            <span class="toggle-icon">▶</span>
+                            <h3>The Math of Parameter Derivations</h3>
+                        </button>
+                        <div class="toggle-content">
+                            <p>The SDOF equation for a mass spring system with structural damping is as follows:</p>
+
+                            <p>
+                            $$
+                            Y(\omega) = i\omega \frac{A}{\omega_r^2 - \omega^2 + i\eta_r \omega_r^2}
+                            $$
+                            </p>
+
+                            <p>
+                            Thus, the parameters needed for each resonance peak are a modal constant $A$, natural frequency $\omega_r$, and damping coefficient $\eta_r$.
+                            </p>
+
+                            <p>
+                            We start by doing a least-squares fit of a circle to the several points on either side of the identified peak.
+                            </p>
+
+                            <p>
+                            The resonant frequency is found by plotting $\theta$ (the angles from the center of the circle to each of the points) with respect to $\omega$, fitting a spline to those points, and finding the location of maximum derivative. In other words, the point where the arc swept out by $d\theta$ is largest.
+                            </p>
+
+                            <p>
+                            The damping coefficient is found by taking several of the frequencies of points on either side of $\omega_r$, call them $\omega_a$ and $\omega_b$. Then:
+                            </p>
+
+                            <p>
+                            $$
+                            \eta_r = \text{avg}\left(
+                            \frac{\omega_a^2 - \omega_b^2}
+                            {\omega_r^2 \left(\tan\left(\frac{\theta_a}{2}\right) + \tan\left(\frac{\theta_b}{2}\right)\right)}
+                            \right)
+                            $$
+                            </p>
+
+                            <p>
+                            Then, given the diameter of the circle $D$,
+                            </p>
+
+                            <p>
+                            $$
+                            |A| = \omega_r \eta_r D \\
+                            \text{phase}(A) = \theta_r
+                            $$
+                            </p>
+
+                            <p>
+                            Once these values are calculated for each peak, the full function is reconstructed:
+                            </p>
+
+                            <p>
+                            $$
+                            Y(\omega) = \sum i\omega \frac{A}{\omega_r^2 - \omega^2 + i\eta_r \omega_r^2}
+                            $$
+                            </p>
+
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -213,13 +285,23 @@
                     </div>
 
                     <h3>Mode shapes of the metal plate</h3>
-                    <div class="image-grid-3">
-                        <div class="grid-item"><img src="images/modal_analysis/mode1.gif" alt="Mode Shape"></div>
-                        <div class="grid-item"><img src="images/modal_analysis/mode2.gif" alt="Mode Shape"></div>
-                        <div class="grid-item"><img src="images/modal_analysis/mode3.gif" alt="Mode Shape"></div>
-                        <div class="grid-item"><img src="images/modal_analysis/mode4.gif" alt="Mode Shape"></div>
-                        <div class="grid-item"><img src="images/modal_analysis/mode5.gif" alt="Mode Shape"></div>
-                        <div class="grid-item"><img src="images/modal_analysis/mode6.gif" alt="Mode Shape"></div>
+                    <div class="image-grid-2">
+                        <div class="grid-item">
+                            <img src="images/modal_analysis/plate154hz.gif" alt="Mode Shape">
+                            <p class="image-caption">154 Hz Mode</p>
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/modal_analysis/plate257hz.gif" alt="Mode Shape">
+                            <p class="image-caption">257 Hz Mode</p>
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/modal_analysis/plate572hz.gif" alt="Mode Shape">
+                            <p class="image-caption">572 Hz Mode</p>
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/modal_analysis/plate892hz.gif" alt="Mode Shape">
+                            <p class="image-caption">892 Hz Mode</p>
+                        </div>
                     </div>
                     <p>Performing this procedure on a wooden plate with a cutout simulates the challenges of the f-holes on a violin, especially when we want to interpolate between measurement points.</p>
 
@@ -233,7 +315,11 @@
                             <p class="image-caption">Mode shape animation</p>
                         </div>
                     </div>
-                </div>
+
+                    <div class="project-links">
+                        <a href="https://noahsaxenian.notion.site/Ideas-for-interpolating-mode-shapes-7b885587e26b479394ffb00211d6b79d" target="_blank" class="button">Ideas for Interpolating Mode Shapes</a></h3>
+                    </div>
+                    </div>
             </div>
 
             <h2>Testing on a Violin</h2>

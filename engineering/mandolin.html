@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Analysis - Noah Saxenian</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Noah Saxenian</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link active">Engineering</a></li>
+                <li><a href="../art.html" class="nav-link">Art</a></li>
+                <li><a href="../resume.html" class="nav-link">Resume</a></li>
+                <li><a href="../contact.html" class="nav-link">About Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container project-detail">
+        <a href="../index.html" class="back-link">← Back to Engineering Projects</a>
+
+        <!-- Project Header -->
+        <section class="detail-header">
+            <h1>Mandolin</h1>
+            <p class="project-date">August 2024</p>
+            <div class="project-tags">
+                <span class="tag">Acoustics</span>
+                <span class="tag">CAD</span>
+                <span class="tag">Fabrication</span>
+                <span class="tag">Experimental Analysis</span>
+            </div>
+        </section>
+
+        <!-- Project Summary -->
+        <section class="project-summary">
+            <p>
+                <em>
+                    This mandolin was built as part of a course at Tufts titled Musical Instrument Design and Manufacture, taught by Chris Rogers. Through the course we learned how to build, analyze, and better understand musical instruments using analytical, experimental, and numerical methods.
+                </em>
+            </p>
+        </section>
+
+        <section class="detail-content">
+
+            <!-- Demo Video -->
+            <h2>Finished Mandolin</h2>
+            <div class="content-full-image">
+                <img src="images/mandolin/cover.jpg">
+            </div>
+            <div class="content-full-image">
+                <div class="video-container">
+                    <iframe
+                        src="https://www.youtube.com/embed/7xdtwgZtNZ8"
+                        title="Mandolin Demo"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h2>Detail Photos</h2>
+                </button>
+                <div class="toggle-content">
+                    <div class="image-grid-2">
+                        <div class="content-image">
+                            <img src="images/mandolin/detail1.jpg" alt="Detail">
+                        </div>
+                        <div class="content-image">
+                            <img src="images/mandolin/detail2.jpg" alt="Detail">
+                        </div>
+                        <div class="content-image">
+                            <img src="images/mandolin/detail3.jpg" alt="Detail">
+                        </div>
+                        <div class="content-image">
+                            <img src="images/mandolin/detail4.jpg" alt="Detail">
+                        </div>
+                        <div class="content-image">
+                            <img src="images/mandolin/detail5.jpg" alt="Detail">
+                        </div>
+                        <div class="content-image">
+                            <img src="images/mandolin/detail6.jpg" alt="Detail">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Design</h2>
+            <div class="content-row">
+                <div class="content-text">
+                    <p>I made the decision to attempt a complex flat-top mandolin, featuring a spruce soundboard with walnut inlay, solid bent maple sides, an induced arch on the top and back with interior bracing, a hand carved maple neck, and more inlay work on the head plate and fretboard. I designed the mandolin from scratch, while referencing an old broken mandolin and online forums for rough measurements.</p>
+                    <p>The full CAD was done in OnShape and can be viewed <a href="https://cad.onshape.com/documents/2c65c2e2e190c263c5cdc48f/w/b8b9fa9290e43700e8ff3c8b/e/52ff835d4c44ebf18326fe03?renderMode=0&uiState=6627d81e60ca8b629d3c9b0f">here.</a></p>
+                    <p><a href="https://noahsaxenian.notion.site/Mandolin-Design-Details-and-Planning-f8e84dc3cb8d4d739f4f79282c4ef025">Full design details and planning</a></p>
+                </div>
+                <div class="content-image">
+                    <img src="images/mandolin/cad.png">
+                    <p class="image-caption">CAD design</p>
+                </div>
+            </div>
+
+            <h2>Construction</h2>
+            <p>This was an immense, self-taught learning experience. I’ve broken the build down into 9 major steps. Click on each one to learn more.</p>
+            <section class="projects-grid">
+                <!-- Step 1 -->
+                <article class="project-card" data-project="1body_mold">
+                    <div class="project-image-small">
+                        <img src="images/mandolin/mold1.jpg">
+                    </div>
+                    <div class="project-info">
+                        <h3>1) Body Mold</h3>
+                    </div>
+                </article>
+
+                <!-- Step 2 -->
+                <article class="project-card" data-project="2veneers">
+                    <div class="project-image-small">
+                        <img src="images/mandolin/veneers.jpg">
+                    </div>
+                    <div class="project-info">
+                        <h3>2) Making Veneers</h3>
+                    </div>
+                </article>
+
+                <article class="project-card" data-project="3sides">
+                    <div class="project-image-small">
+                        <img src="images/mandolin/sides4.jpg">
+                    </div>
+                    <div class="project-info">
+                        <h3>3) Bending the Sides</h3>
+                    </div>
+                </article>
+
+                <article class="project-card" data-project="4body-structure">
+                    <div class="project-image-small">
+                        <img src="images/mandolin/structure4.jpeg">
+                    </div>
+                    <div class="project-info">
+                        <h3>4) Body Structure</h3>
+                    </div>
+                </article>
+
+                <article class="project-card" data-project="5inlay-bracing">
+                    <div class="project-image-small">
+                        <img src="images/mandolin/brace5.jpeg">
+                    </div>
+                    <div class="project-info">
+                        <h3>5) Top Inlay and Bracing</h3>
+                    </div>
+                </article>
+
+                <article class="project-card" data-project="6glue-up">
+                    <div class="project-image-small">
+                        <img src="images/mandolin/body3.jpeg">
+                    </div>
+                    <div class="project-info">
+                        <h3>6) Body Glue-up</h3>
+                    </div>
+                </article>
+
+                <article class="project-card" data-project="7neck">
+                    <div class="project-image-small">
+                        <img src="images/mandolin/neck1.jpeg">
+                    </div>
+                    <div class="project-info">
+                        <h3>7) Neck Joint</h3>
+                    </div>
+                </article>
+
+                <article class="project-card" data-project="8fretboard">
+                    <div class="project-image-small">
+                        <img src="images/mandolin/fretboard.png">
+                    </div>
+                    <div class="project-info">
+                        <h3>8) Neck and Fretboard</h3>
+                    </div>
+                </article>
+
+                <article class="project-card" data-project="9finishing-touches">
+                    <div class="project-image-small">
+                        <img src="images/mandolin/head3.jpeg">
+                    </div>
+                    <div class="project-info">
+                        <h3>9) Finishing Touches</h3>
+                    </div>
+                </article>
+
+            </section>
+
+            <h2>Analysis</h2>
+            <p>In an effort to understand our instruments more deeply, I did two projects to analyze its acoustic properties.</p>
+            <section class="image-grid-2">
+                <!-- Step 1 -->
+                <a href="https://noahsaxenian.notion.site/Overtone-Comparison-and-Joint-Time-Frequency-Analysis-96cbf4f752f04c00aa046a0c48ace5d4" target="_blank" class="button">Joint Time Frequency Analysis</a>
+
+                <!-- Step 2 -->
+                <a href="https://noahsaxenian.notion.site/Impact-of-Sound-Hole-Size-on-the-Mandolin-Spectrum-7bc9de2430b34571893a5ca37550c696" target="_blank" class="button">Impact of Sound Hole Size</a>
+            </section>
+
+            <h2>Composition</h2>
+            <p>
+                The final piece of this project was to compose and perform an original song! Since a mandolin is tuned like a violin, it is common to play fiddle tunes. I composed my song with a similar structure and sound to a lot of fiddle tunes. It has an AABB structure, and I tried to use repeating themes with some variation to create a cohesive composition. A performance is recorded in the overview video above.
+            </p>
+            <iframe src="images/mandolin/mandolin_song.pdf" width="100%" height="600"></iframe>
+            <p>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/noahsaxenian" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/noah-saxenian" target="_blank">LinkedIn</a>
+            <a href="mailto:noahsaxenian@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../project-toggles.js"></script>
+    <script src="../table-of-contents.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+</body>
+</html>

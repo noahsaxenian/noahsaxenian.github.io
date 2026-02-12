@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jousting Roomba - Noah Saxenian</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Noah Saxenian</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link active">Engineering</a></li>
+                <li><a href="../art.html" class="nav-link">Art</a></li>
+                <li><a href="../resume.html" class="nav-link">Resume</a></li>
+                <li><a href="../contact.html" class="nav-link">About Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container project-detail">
+        <a href="../index.html" class="back-link">← Back to Engineering Projects</a>
+
+        <section class="detail-header">
+            <h1>Jousting Roomba</h1>
+            <p class="project-date">Fall 2022</p>
+            <div class="project-tags">
+                <span class="tag">Robotics</span>
+                <span class="tag">ROS2</span>
+                <span class="tag">CAD</span>
+                <span class="tag">Fabrication</span>
+                <span class="tag">Programming</span>
+            </div>
+        </section>
+
+        <section class="project-summary">
+            <p>This jousting robot uses the Create 3 platform to navigate around two "barrels" before driving up next to a wall to face off against another robot. The goal was to create a knight that would knock the opponent off but be chivalrous in doing so — it must be able to be knocked off itself.</p>
+        </section>
+
+        <section class="detail-content">
+
+            <div class="content-full-image">
+                <img src="images/jousting/jousting-main.jpg" alt="Jousting Roomba" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%23ddd%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EJousting Roomba%3C/text%3E%3C/svg%3E'">
+            </div>
+
+            <h2>Features</h2>
+            <p>Our horse was designed with a wooden living hinge for both style and function, creating a sturdy base for our knight and its lance. The horse itself is on a metal hinge to allow for it to be knocked over during battle and to allow for its galloping motion. The 3D printed knight riding the horse is a cross between a knight and Dwayne "The Rock" Johnson.</p>
+            <p>The lance is mounted to a servo motor in the side of the horse, allowing the knight to ride with the lance pointing up and out of the way, then lower it when entering the joust. The galloping motion is accomplished by a DC motor turning a laser cut cam underneath the body of the horse.</p>
+            <p>The joust begins once a spreadsheet value is changed from "WAIT" to "GO." The Create 3 base executes driving actions such as driving up to a specified distance from an object, driving in a set arc, and following along a wall. The Create also communicates over serial connection to a Maker Pi RP2040 microcontroller to control the electronics and play the victory song.</p>
+
+            <div class="content-full-image">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/KPwNuuQ0Kv8" title="Jousting Roomba Working Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p class="image-caption">Working Video</p>
+            </div>
+
+            <h2>How It Was Built</h2>
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h3>Code</h3>
+                </button>
+                <div class="toggle-content">
+
+                    <div class="toggle-section toggle-compact">
+                        <button class="toggle-header">
+                            <span class="toggle-icon">▶</span>
+                            <p>Base code controlling the joust</p>
+                        </button>
+                        <div class="toggle-content">
+                            <p>Uses a function called <code>AskAirtable</code> to check the status of a spreadsheet cell using an API. When the cell switches to "GO", it begins the jousting commands. It sets the horse galloping, drives up to the first barrel, turns 90 degrees, drives two pre-programed arcs, turns to set up for the joust, lowers the lance, follows the wall for the joust, and plays the victory song.</p>
+                            <div class="code-block">
+                                <div class="code-block-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="code-copy-btn">Copy</button>
+                                </div>
+                                <pre><code class="language-python">import time
+from joustLib import AskAirtable
+from jousting import Joust
+import os
+os.environ['ROS_DOMAIN_ID'] = "13"
+create = '/Pig'
+jouster = Joust(create)
+jouster.servo(90)
+
+def main():
+    start = False
+    while not start:
+        signal = AskAirtable()
+        if signal == 'GO':
+            start = True
+        time.sleep(0.2)
+    try:
+        print('GO')
+        jouster.gallop()
+        jouster.up_to_object(8)
+        jouster.rotate(1.57)
+        jouster.drive_arc(-3.1415, 0.4)
+        jouster.drive_arc(3.4, 0.55)
+        jouster.rotate(-1.9)
+        jouster.run_code('stop()')
+        jouster.servo(-90)
+        jouster.gallop()
+        jouster.wall_follow(1, 14)
+        jouster.run_code('stop()')
+        jouster.play_rocky()
+        jouster.shutdown()
+    except:
+        jouster.shutdown()
+        print('error')
+
+main()</code></pre>
+                            </div>
+
+                            <div class="toggle-section toggle-small">
+                                <button class="toggle-header">
+                                    <span class="toggle-icon">▶</span>
+                                    <p><code>AskAirtable()</code></p>
+                                </button>
+                                <div class="toggle-content">
+                                    <div class="code-block">
+                                        <div class="code-block-header">
+                                            <span class="code-language">Python</span>
+                                            <button class="code-copy-btn">Copy</button>
+                                        </div>
+                                        <pre><code class="language-python">import requests
+
+def AskAirtable():
+    robotName = '/Pig'
+    APIKey = '*****************'
+    BaseID = 'appR1aI5gGVAWcNjU'
+    RecID_Start = 'recdYT6DgPHKSpODK'
+    tableName = 'Table 1'
+    URL = 'https://api.airtable.com/v0/' + BaseID + '/' + tableName + '?api_key=' + APIKey
+    try:
+        r = requests.get(url=URL, params={})
+        data = r.json()
+        for command in data['records']:
+            signal = command['fields']['Signal']
+        return signal
+    except:
+        return None</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-section toggle-compact">
+                        <button class="toggle-header">
+                            <span class="toggle-icon">▶</span>
+                            <p>joustLib — ROS Actions</p>
+                        </button>
+                        <div class="toggle-content">
+                            <p>The bulk of the Create controls are done through ROS2 actions. Each action follows the same structure: set up an action client, create a goal message, set up callbacks to tell when done, and set <code>self.done = True</code> when complete.</p>
+
+                            <div class="toggle-section toggle-small">
+                                <button class="toggle-header">
+                                    <span class="toggle-icon">▶</span>
+                                    <p>WallFollow class</p>
+                                </button>
+                                <div class="toggle-content">
+                                    <div class="code-block">
+                                        <div class="code-block-header">
+                                            <span class="code-language">Python</span>
+                                            <button class="code-copy-btn">Copy</button>
+                                        </div>
+                                        <pre><code class="language-python">class Wall(Node):
+    def __init__(self, namespace='/Picard'):
+        self.done = False
+        super().__init__('wall_follow_action_client')
+        self._action = ActionClient(self, WallFollow, namespace + '/wall_follow')
+
+    def set_goal(self, side=1, secs=1, nanosecs=0):
+        self.done = False
+        goal_msg = WallFollow.Goal()
+        goal_msg.follow_side = side
+        goal_msg.max_runtime = Duration(sec=secs, nanosec=nanosecs)
+        self._action.wait_for_server()
+        self._send_goal_future = self._action.send_goal_async(goal_msg)
+        self._send_goal_future.add_done_callback(self.goal_request_callback)
+
+    def goal_request_callback(self, future):
+        goal_handle = future.result()
+        if not goal_handle.accepted:
+            self.done = True
+            return
+        self._get_result_future = goal_handle.get_result_async()
+        self._get_result_future.add_done_callback(self.get_result_callback)
+
+    def get_result_callback(self, future):
+        result = future.result().result
+        self.done = True</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="toggle-section toggle-small">
+                                <button class="toggle-header">
+                                    <span class="toggle-icon">▶</span>
+                                    <p>IR Follower class</p>
+                                </button>
+                                <div class="toggle-content">
+                                    <p>Uses an ROS subscription to access IR sensor data from the Create. Uses a publisher to send twist commands to drive up to a set distance from an object, with a proportional controller to calculate speed from distance values.</p>
+                                    <div class="code-block">
+                                        <div class="code-block-header">
+                                            <span class="code-language">Python</span>
+                                            <button class="code-copy-btn">Copy</button>
+                                        </div>
+                                        <pre><code class="language-python">class IrFollower(Node):
+    def __init__(self, namespace='/rogers'):
+        self.target_dist = 5
+        self.tuning = 0.01
+        self.i = 0
+        self.done = False
+        super().__init__('ir_follower')
+        self.subscription = self.create_subscription(
+            IrIntensityVector, namespace + '/ir_intensity',
+            self.callback, qos_profile_sensor_data)
+        self.twist_publisher = self.create_publisher(
+            geometry_msgs.msg.Twist, namespace + '/cmd_vel', 10)
+
+    def callback(self, msg: IrIntensityVector):
+        self.values = [h.value for h in msg.readings]
+        ir_ave = (self.values[3] + self.values[4]) / 2
+        dist = 79.9 * ((ir_ave + 0.000001) ** (-0.512))
+        speed = self.tuning * (dist - self.target_dist)
+        if speed < 0:
+            self.done = True
+            return
+        self.move(1.0, 0.0, 0.0, 0.0, speed, 0.0)
+
+    def move(self, x, y, z, th, speed, turn):
+        twist = geometry_msgs.msg.Twist()
+        twist.linear.x = x * speed
+        twist.angular.z = th * turn
+        self.twist_publisher.publish(twist)
+
+    def set_goal(self, target_dist):
+        self.target_dist = target_dist
+        self.done = False</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-section toggle-compact">
+                        <button class="toggle-header">
+                            <span class="toggle-icon">▶</span>
+                            <p>Joust class — serial controls</p>
+                        </button>
+                        <div class="toggle-content">
+                            <p>The Joust class wraps all Create actions and serial communication with the MakerPi. Each create action follows the same pattern: set goal, then call <code>wait()</code> until done.</p>
+
+                            <div class="toggle-section toggle-small">
+                                <button class="toggle-header">
+                                    <span class="toggle-icon">▶</span>
+                                    <p>Gallop, servo, and music functions</p>
+                                </button>
+                                <div class="toggle-content">
+                                    <p>These functions send MicroPython code over serial to the MakerPi. The music function defines frequencies for each note and plays the Rocky theme — see if you can identify it from the video!</p>
+                                    <div class="code-block">
+                                        <div class="code-block-header">
+                                            <span class="code-language">Python</span>
+                                            <button class="code-copy-btn">Copy</button>
+                                        </div>
+                                        <pre><code class="language-python">def gallop(self):
+    code = '''
+import machine
+M1A = machine.Pin(8, machine.Pin.OUT)
+M1B = machine.Pin(9, machine.Pin.OUT)
+def reverse():
+    M1A.low()
+    M1B.high()
+reverse()
+'''
+    self.run_code(code)
+
+def play_rocky(self):
+    code = '''
+import machine, time
+b = 2.0
+E=330; G=392; A=440; B=494; C=262; D=294
+highC=524; highE=660; highF=698
+notes1 = [E, G, A, 1000000, A, B, E, 1000000]
+duration1 = [b/16, 3*b/16, 3*b/4-0.2, 0.2, b/16, 3*b/16, 3*b/4-0.2, 0.2]
+buzzer = machine.PWM(machine.Pin(22))
+def beep(freq=440, duration=0.3):
+    buzzer.freq(freq)
+    buzzer.duty_u16(int(65536/2))
+    time.sleep(duration)
+    buzzer.duty_u16(0)
+for i in range(2):
+    for i in range(len(notes1)):
+        beep(notes1[i], duration1[i])
+'''
+    self.run_code(code)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h3>Fabrication</h3>
+                </button>
+                <div class="toggle-content">
+
+                    <div class="toggle-section toggle-compact">
+                        <button class="toggle-header">
+                            <span class="toggle-icon">▶</span>
+                            <p>Horse</p>
+                        </button>
+                        <div class="toggle-content">
+                            <p>The laser cut horse was the most complicated part of fabrication. <a href="https://cad.onshape.com/documents/8bfbb28606d60f71688215fe/w/5d33f3def617ce53e9ed2e8a/e/06b2e69cf84713c136e0285d?renderMode=0&uiState=63910f51e75d51349dc61242" target="_blank">Here is a CAD model of the horse.</a></p>
+                            <ol>
+                                <li>Trace an image of a horse and extrude to create the side panels.</li>
+                                <li>Cut tab holes into the side panels.</li>
+                                <li>Use lofts from tab to tab to generate the curvature for the living hinge.</li>
+                                <li>Write down lengths of each path to create the living hinge at the right dimensions.</li>
+                                <li>Model the cutout to fit the servo motor inside.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="toggle-section toggle-compact">
+                        <button class="toggle-header">
+                            <span class="toggle-icon">▶</span>
+                            <p>Galloping Cam</p>
+                        </button>
+                        <div class="toggle-content">
+                            <div class="content-row">
+                                <div class="content-text">
+                                    <p>I designed a simple cam to attach to a DC motor. This is what lifts the horse up and down for the galloping motion. <a href="https://cad.onshape.com/documents/8bfbb28606d60f71688215fe/w/5d33f3def617ce53e9ed2e8a/e/5565871115844d5e8e59ebd4?renderMode=0&uiState=6391104de75d51349dc615d9" target="_blank">Here is the CAD model.</a></p>
+                                    <p>I realized the cam could just push on the bottom of the servo motor — a beautifully simple solution. Instead of designing a mount to hold the DC motor vertically, we cut a chunk of PVC pipe and glued the motor inside it.</p>
+                                </div>
+                                <div class="content-image">
+                                    <img src="images/jousting/cam.jpg" alt="Galloping cam" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ECam%3C/text%3E%3C/svg%3E'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toggle-section toggle-compact">
+                        <button class="toggle-header">
+                            <span class="toggle-icon">▶</span>
+                            <p>Knight</p>
+                        </button>
+                        <div class="toggle-content">
+                            <div class="content-row">
+                                <div class="content-text">
+                                    <p>Julian designed the knight to be Dwayne "The Rock" Johnson. He imported a model of a knight, sliced off its head, imported a model of the Rock's head, and spliced the two together. <a href="https://cad.onshape.com/documents/8bfbb28606d60f71688215fe/w/5d33f3def617ce53e9ed2e8a/e/0df37f1f1a7a315f50a5a477?renderMode=0&uiState=63911257e75d51349dc61e97" target="_blank">Here is the CAD assembly.</a></p>
+                                </div>
+                                <div class="content-image">
+                                    <img src="images/jousting/knight.jpg" alt="The Rock Knight" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThe Rock Knight%3C/text%3E%3C/svg%3E'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h3>Possible Improvements</h3>
+                </button>
+                <div class="toggle-content">
+                    <div class="toggle-section toggle-compact">
+                        <button class="toggle-header">
+                            <span class="toggle-icon">▶</span>
+                            <p>Advanced angle-based wall following around barrels</p>
+                        </button>
+                        <div class="toggle-content">
+                            <p>I initially wanted to not program any dimensions into the Create's trajectory. As it stands, the wall follow action runs for a set amount of time, but I wanted to make it stop after it turned a certain angle. I was able to subscribe to the Create's IMU and get angle data relatively easily, but could not figure out how to interrupt the wall follow action once a certain angle change was reached. In a future version, it might require modifying the wall follow action directly to take angle as another parameter.</p>
+                        </div>
+                    </div>
+                    <div class="toggle-section toggle-compact">
+                        <button class="toggle-header">
+                            <span class="toggle-icon">▶</span>
+                            <p>Light sensor win/loss detection</p>
+                        </button>
+                        <div class="toggle-content">
+                            <p>I did code the ability to get light sensor values back over the serial connection, but never used it. It would be cool to use the light sensor to sense a win or loss and play a different song depending on the result.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Final Thoughts</h2>
+            <p>Overall, I really enjoyed building this project and I am proud of how it turned out. My favorite parts are the galloping action of the horse and how the lance lowers down as it's charging. I learned a ton about programming in ROS from this project, and I now feel capable of controlling the Create's actions and getting any information by parsing through a subscription to one of the topics.</p>
+            <p>The living hinge that Julian designed is really cool too. We also collectively worked on the code to play the song and I love how we created a system that would make it easy to program in nearly any song.</p>
+            <p>In the end we lost the joust, but we built a chivalrous knight worthy of winning many future jousts!</p>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/noahsaxenian" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/noah-saxenian" target="_blank">LinkedIn</a>
+            <a href="mailto:noahsaxenian@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../project-toggles.js"></script>
+    <script src="../code-blocks.js"></script>
+    <script src="../table-of-contents.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</body>
+</html>

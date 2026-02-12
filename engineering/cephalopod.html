@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cephalopod - Noah Saxenian</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Noah Saxenian</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link active">Engineering</a></li>
+                <li><a href="../art.html" class="nav-link">Art</a></li>
+                <li><a href="../resume.html" class="nav-link">Resume</a></li>
+                <li><a href="../contact.html" class="nav-link">About Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container project-detail">
+        <a href="../index.html" class="back-link">← Back to Engineering Projects</a>
+
+        <!-- Project Header -->
+        <section class="detail-header">
+            <h1>Coral Restoration Robot</h1>
+            <p class="project-date">Fall 2024</p>
+            <div class="project-tags">
+                <span class="tag">Soft Robotics</span>
+                <span class="tag">CAD</span>
+                <span class="tag">Fabrication</span>
+            </div>
+        </section>
+
+        <!-- Project Summary -->
+        <section class="project-summary">
+            <p>
+                <em>
+                    A cephalopod inspired underwater robot powered by a fluidic actuation system as a prototype for low disturbance coral monitoring and restoration efforts.
+                </em>
+            </p>
+        </section>
+
+        <!-- Main Content -->
+        <section class="detail-content">
+
+            <h2>Overview</h2>
+            <h3>Problem</h3>
+            <div class="content-row" style="--col-a: 3fr; --col-b: 1fr;">
+                <div class="content-text">
+                    <p>Coral restoration currently requires manual effort from scuba divers, which is difficult, time-consuming, and costly.</p>
+                    <p>Remote monitoring of coral reefs is unreliable, and conventional propellers for locomotion disturb marine creatures.</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/cephalopod/overview1.png">
+                </div>
+            </div>
+            <h3>Approach</h3>
+            <div class="content-row" style="--col-a: 1fr; --col-b: 3fr;">
+                <div class="content-image">
+                    <img src="images/cephalopod/overview2.gif">
+                </div>
+                <div class="content-text">
+                    <p>Our solution is to develop an underwater robot powered by a fluidic actuation system that can monitor and assist with coral restoration efforts without disturbing marine life.</p>
+                </div>
+            </div>
+            <h3>Results</h3>
+            <div class="content-row" style="--col-a: 3fr; --col-b: 1fr;">
+                <div class="content-text">
+                    <p>We've achieved successful tethered underwater motion with a robot built from a fluidic linear actuator, flexible TPU beams, acrylic plates, and a thin flexible outer membrane.</p>
+                    <p>A future goal would be to integrate the control system into the body for untethered motion, possibly using a ring oscillator to reduce the required electronics.</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/cephalopod/cover.webp">
+                </div>
+            </div>
+            <h3>Impact</h3>
+            <div class="content-row" style="--col-a: 1fr; --col-b: 3fr;">
+                <div class="content-image">
+                    <img src="images/cephalopod/overview4.png">
+                </div>
+                <div class="content-text">
+                    <p>Our underwater robot would help researchers gather data on coral reefs with less invasive methods by eliminating the need for propellers in a cost-effective and replicatable robotic solution.</p>
+                </div>
+            </div>
+
+            <!-- Demo Video -->
+            <h2>Demo Video</h2>
+            <div class="content-full-image">
+                <div class="video-container">
+                    <iframe
+                        src="https://www.youtube.com/embed/3VrLHaLZSPs"
+                        title="Fluidic Cephalopod Robot Demo"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="image-caption">Underwater robot in action</p>
+            </div>
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h2>Design Process</h2>
+                </button>
+                <div class="toggle-content">
+                    <div class="content-full-image">
+                        <img src="images/cephalopod/Final Presentation (2) (1).png">
+                    </div>
+                    <div class="content-full-image">
+                        <img src="images/cephalopod/Final Presentation (3) (1).png">
+                    </div>
+                    <div class="content-full-image">
+                        <img src="images/cephalopod/Final Presentation (3).svg">
+                    </div>
+                </div>
+            </div>
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h2>Control Circuitry and Code</h2>
+                </button>
+                <div class="toggle-content">
+                    <div class="content-full-image">
+                        <img src="images/cephalopod/Final Presentation (1) (1).svg">
+                    </div>
+                    <div class="code-block">
+                        <div class="code-block-header">
+                            <span class="code-language">Arduino</span>
+                            <button class="code-copy-btn">Copy</button>
+                        </div>
+                        <pre><code class="language-cpp">const int valve = 8;  // Pin 2
+const int motor = 2;  // Pin 3
+const int groundPin = 4;  // Pin 4 (ground)
+const int groundPin2 = 11;  // Pin 4 (ground)
+const int groundPin3 = 9;  // Pin 4 (ground)
+
+const int buttonPin = 12;  // Pin connected to the button
+
+
+void setup() {
+  // Set pin 2 and 3 as outputs
+  pinMode(valve, OUTPUT);
+  pinMode(motor, OUTPUT);
+  
+  // Set pin 4 as ground (output set to LOW)
+  pinMode(groundPin, OUTPUT);
+  digitalWrite(groundPin, LOW);
+  pinMode(groundPin2, OUTPUT);
+  digitalWrite(groundPin2, LOW);
+  pinMode(groundPin3, OUTPUT);
+  digitalWrite(groundPin3, LOW);
+
+  pinMode(buttonPin, INPUT_PULLUP);
+}
+
+void loop() {
+  while (digitalRead(buttonPin) == LOW){
+    digitalWrite(motor, HIGH);
+    digitalWrite(valve, LOW);
+    delay(900);
+    
+    // Turn pin 3 off
+    digitalWrite(motor, LOW);
+    digitalWrite(valve, HIGH);
+    delay(200); // Wait for 5 seconds
+  }
+    // Turn pin 3 off
+  digitalWrite(motor, LOW);
+  digitalWrite(valve, LOW);
+  delay(100); // Wait for 5 seconds
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+
+            <h2>Project / Course Takeaways</h2>
+
+            <h3>Engineering Knowledge</h3>
+            <ul>
+                <li>Learned to think differently about materials and how material properties can be leveraged to produce desired outcomes</li>
+                <li>Learned about jet propulsion and the fluid dynamics behind this concept</li>
+            </ul>
+
+            <h3>3D Printing Skills</h3>
+            <ul>
+                <li>Learned how to better design models for successful printing (i.e. limiting overhangs and bridges)</li>
+                <li>Gained experience working with GCode files and modifying print parameters to produce desired print properties</li>
+                <li>Learned how to troubleshoot and repair clogged 3D printers</li>
+            </ul>
+
+            <h3>Project Planning</h3>
+            <ul>
+                <li>Weekly check-ins helped keep us on track and pivot on designs and ideas as needed to develop a successful final prototype</li>
+                <li>Learned to balance final project work with other assignments, including planning final project prints around those needed for labs</li>
+            </ul>
+
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/noahsaxenian" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/noah-saxenian" target="_blank">LinkedIn</a>
+            <a href="mailto:noahsaxenian@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../project-toggles.js"></script>
+    <script src="../table-of-contents.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persistence of Vision Display - Noah Saxenian</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Noah Saxenian</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link active">Engineering</a></li>
+                <li><a href="../art.html" class="nav-link">Art</a></li>
+                <li><a href="../resume.html" class="nav-link">Resume</a></li>
+                <li><a href="../contact.html" class="nav-link">About Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container project-detail">
+        <a href="../index.html" class="back-link">← Back to Engineering Projects</a>
+
+        <section class="detail-header">
+            <h1>Persistence of Vision Display</h1>
+            <div class="project-tags">
+                <span class="tag">Electronics</span>
+                <span class="tag">Arduino</span>
+                <span class="tag">Fabrication</span>
+                <span class="tag">Programming</span>
+            </div>
+        </section>
+
+        <section class="project-summary">
+            <p>The goal of this project was to build an LED display using persistence of vision — the fact that the human eye retains images for a short period of time after it sees them. This means we can show the eye a bunch of images quickly, and it combines them into one. This was built with a friend and mentor of mine, Steve Choate.</p>
+        </section>
+
+        <section class="detail-content">
+
+            <div class="content-full-image">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/iUKoY8cX89s" title="Persistence of Vision Display Working Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p class="image-caption">Working Video</p>
+            </div>
+
+            <div class="image-grid-2">
+                <div class="grid-item">
+                    <img src="images/pov-display/DSC_0146.jpg" alt="POV Display in action">
+                    <p class="image-caption">Display in action</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/pov-display/DSC_0140.jpg" alt="POV Display overview">
+                    <p class="image-caption">Full device overview</p>
+                </div>
+            </div>
+
+            <h2>How It Was Made</h2>
+            <p>This was clearly built in a prototype form — the frame put together from wood scraps, a popsicle stick mounted to a DC motor using a random gear that happened to fit the shaft, and hot glue gobbed on everywhere.</p>
+            <p>On the popsicle stick, there is an Arduino mini controlling everything. The LEDs were scraped off of an LED strip and soldered directly onto a piece of copper circuit board, in order to pack them as close together as possible. Tiny surface mount resistors were soldered onto the board as well. On the underside of the popsicle stick, an optical sensor was attached in order to sense when each full revolution had been completed.</p>
+            <p>On the base, Steve built a small circuit board to act as a speed controller for the motor. We decided to keep power completely separate from the motor and the other electronics.</p>
+
+            <div class="content-full-image">
+                <img src="images/pov-display/inked1.jpg" alt="Circuit board and LED assembly">
+                <p class="image-caption">LED and circuit board assembly on the popsicle stick</p>
+            </div>
+
+            <h2>Power Contacts</h2>
+            <div class="content-row">
+                <div class="content-text">
+                    <p>Getting power to the spinning board was the hardest challenge of this project. Direct wires would just get tangled as it spins, so we needed to create some contacts.</p>
+                    <p>For the positive line, we glued a washer onto the motor and attached a springy piece of bent copper on the popsicle stick. These two metal surfaces stay in contact with each other throughout the duration of the revolution.</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/pov-display/InkedDSC_01615_LI.jpg" alt="Positive contact washer">
+                    <p class="image-caption">Washer contact for positive line</p>
+                </div>
+            </div>
+
+            <div class="content-row reverse">
+                <div class="content-image">
+                    <img src="images/pov-display/inked.jpg" alt="Ground contact on motor shaft">
+                    <p class="image-caption">Springy copper contact on motor shaft for ground</p>
+                </div>
+                <div class="content-text">
+                    <p>We thought about putting a second, larger washer for the ground connection, but that proved to be unnecessary when we realized that the shaft of the motor is completely disconnected from any of the motor's electricity. We just pressed another piece of springy copper against the bottom of the motor shaft. This ended up being a perfect solution, and more reliable than the washer.</p>
+                </div>
+            </div>
+
+            <h2>Code</h2>
+            <p>The code below allows the user to enter any text in capital letters to be shown on the display. Each letter is stored as a bitmapped column-by-column in the <code>lets[]</code> array, and the code reads out each column at timed intervals synchronized to the rotation.</p>
+
+            <div class="toggle-section toggle-compact">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <p><code>pov_display.ino</code></p>
+                </button>
+                <div class="toggle-content">
+                    <div class="code-block">
+                        <div class="code-block-header">
+                            <span class="code-language">Arduino</span>
+                            <button class="code-copy-btn">Copy</button>
+                        </div>
+                        <pre><code class="language-arduino">int s = 0;
+int p[] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}; //pins
+int lets[] = {0, 62, 72, 72, 72, 72, 62, 0, 0, 126, 82, 82, 82, 82, 44, 0, 0, 60, 66, 66, 66, 66, 36, 0, 0, 126, 66, 66, 66, 36, 24, 0, 0, 126, 82, 82, 82, 82, 66, 0, 0, 126, 80, 80, 80, 80, 64, 0, 0, 60, 66, 66, 74, 74, 44, 0, 0, 126, 16, 16, 16, 16, 126, 0, 0, 0, 66, 66, 126, 66, 66, 0, 0, 12, 2, 2, 2, 2, 124, 0, 0, 126, 16, 16, 40, 68, 2, 0, 0, 126, 2, 2, 2, 2, 2, 0, 0, 126, 32, 16, 16, 32, 126, 0, 0, 126, 32, 16, 8, 4, 126, 0, 0, 60, 66, 66, 66, 66, 60, 0, 0, 126, 72, 72, 72, 72, 48, 0, 0, 60, 66, 74, 70, 66, 60, 0, 0, 126, 72, 72, 72, 76, 50, 0, 0, 36, 82, 82, 82, 82, 12, 0, 64, 64, 64, 126, 64, 64, 64, 0, 0, 124, 2, 2, 2, 2, 124, 0, 0, 120, 4, 2, 2, 4, 120, 0, 0, 124, 2, 4, 4, 2, 124, 0, 0, 66, 36, 24, 24, 36, 66, 0, 64, 32, 16, 14, 16, 32, 64, 0, 0, 66, 70, 74, 82, 98, 66, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+char test[] = "HELLO WORLD";
+
+void setup() {
+  s = sizeof(test);
+  s = s - 1;
+  pinMode(A6, INPUT);
+  for (int q = 0; q < 16; q++) {
+    pinMode(p[q], OUTPUT);
+    digitalWrite(p[q], LOW);
+  }
+}
+
+void loop() {
+  while (digitalRead(18) == HIGH) {
+    for (int i = 0; i < s; i++) {
+      int y = test[i];
+      if (y == 32){ y = 91; }  // 32 is ' ', capital letters A-Z run from 65-90
+      y = (y - 65) * 8;
+      for (int z = 0; z < 8; z++) {
+        for (int x = 0; x < 8; x++) {
+          int br = bitRead(lets[y], x);
+          if (br == 1) {
+            digitalWrite((p[x] + 8), HIGH);
+          }
+          if (br == 0) {
+            digitalWrite((p[x] + 8), LOW);
+          }
+        }
+        y = y + 1;
+        delayMicroseconds(150);
+      }
+      for (int q = 0; q < 16; q++) {
+        digitalWrite(p[q], LOW);
+      }
+    }
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Next Steps</h2>
+            <p>In a future version of this project, it would be interesting to experiment with displaying text and or patterns so that they appear flat. This would likely first require an updated design — smaller LEDs that go all the way to the center would give needed resolution.</p>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/noahsaxenian" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/noah-saxenian" target="_blank">LinkedIn</a>
+            <a href="mailto:noahsaxenian@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../project-toggles.js"></script>
+    <script src="../code-blocks.js"></script>
+    <script src="../table-of-contents.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</body>
+</html>

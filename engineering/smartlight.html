@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartLight - Noah Saxenian</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Noah Saxenian</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link active">Engineering</a></li>
+                <li><a href="../art.html" class="nav-link">Art</a></li>
+                <li><a href="../resume.html" class="nav-link">Resume</a></li>
+                <li><a href="../contact.html" class="nav-link">About Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container project-detail">
+        <a href="../index.html" class="back-link">← Back to Engineering Projects</a>
+
+        <section class="detail-header">
+            <h1>SmartLight</h1>
+            <div class="project-tags">
+                <span class="tag">Research</span>
+                <span class="tag">Arduino</span>
+                <span class="tag">Machine Learning</span>
+                <span class="tag">NeoPixel</span>
+                <span class="tag">CAD</span>
+            </div>
+        </section>
+
+        <section class="project-summary">
+            <p>This is a project I am currently working on as a research assistant. The SmartLight is an offshoot of the <strong>SmartMotor</strong> — a device that can be trained, instead of programmed, to move in different ways in response to sensory inputs. The SmartMotor is being developed as an open source, low-cost tool for teaching the basics of robotics and artificial intelligence.</p>
+            <p>The SmartLight is meant to be a variation of the SmartMotor, with visual output instead of physical. With a NeoPixel ring embedded on one of the faces of the cube, it can be trained to output different color, brightness, or number of LEDs showing based on different sensory inputs.</p>
+        </section>
+
+        <section class="detail-content">
+
+            <h2>How It Works</h2>
+
+            <div class="content-row">
+                <div class="content-text">
+                    <p>On the top of the device there is a potentiometer, a button, an on-off switch, and an LCD display which shows a graph. The x-axis shows sensor input, the y-axis shows output range. On one side, there are two buttons which cycle up and down through different screens. On the other side, there is a port to plug in an array of sensors.</p>
+                    <p>There are 5 screens:</p>
+                    <ul>
+                        <li>Training screen for color</li>
+                        <li>Training screen for brightness</li>
+                        <li>Training screen for number of LEDs</li>
+                        <li>Screen to delete points (X icon)</li>
+                        <li>Screen to run data (play icon)</li>
+                    </ul>
+                </div>
+                <div class="content-image">
+                    <video controls style="width: 100%; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                        <source src="images/smartlight/IMG_1899.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p class="image-caption">Overview of the 5 screens</p>
+                </div>
+            </div>
+
+            <p>For each of the three parameters (color, brightness, number), points can be added on each respective training screen by finding the desired output value with the potentiometer, the desired input state of the sensor, and then pressing the button. The videos below show the range of output options for each parameter.</p>
+
+            <div class="image-grid-3">
+                <div class="grid-item">
+                    <video controls style="width: 100%; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                        <source src="images/smartlight/IMG_1903.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p class="image-caption">Color output range</p>
+                </div>
+                <div class="grid-item">
+                    <video controls style="width: 100%; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                        <source src="images/smartlight/IMG_1902.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p class="image-caption">Brightness output range</p>
+                </div>
+                <div class="grid-item">
+                    <video controls style="width: 100%; border-radius: var(--border-radius); box-shadow: var(--shadow);">
+                        <source src="images/smartlight/IMG_1901.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p class="image-caption">Number of LEDs range</p>
+                </div>
+            </div>
+
+            <p>The video below shows a training example with a light sensor as input. When the button is pressed on the play screen, the nearest neighbor is found for each of the parameters, and the output is combined.</p>
+
+            <div class="content-full-image">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/ByKKBwBcYbI" title="SmartLight Training Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p class="image-caption">Training demo with light sensor input</p>
+            </div>
+
+            <h2>My Contribution</h2>
+
+            <div class="content-row">
+                <div class="content-text">
+                    <p>The framework of this project was already in place as a SmartMotor. I designed and 3D printed the side panel to house a NeoPixel ring. I kept two layers of 3D printed plastic on top of the LEDs to keep a flush surface when the lights are off, but allow enough light to shine through.</p>
+                    <p>The code from the original SmartMotor only has one training screen (and is only trainable on one parameter, position). I modified the code to display the three different training screens, and to merge the training data from each of the parameters.</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/smartlight/panel.jpg" alt="3D printed NeoPixel panel">
+                    <p class="image-caption">3D printed side panel housing the NeoPixel ring</p>
+                </div>
+            </div>
+
+            <div class="image-grid-2">
+                <div class="grid-item">
+                    <img src="images/smartlight/device-front.jpg" alt="SmartLight front view">
+                    <p class="image-caption">Front view</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/smartlight/device-side.jpg" alt="SmartLight side view">
+                    <p class="image-caption">Side view with sensor port</p>
+                </div>
+            </div>
+
+            <div class="project-links">
+                <a href="https://github.com/noahsaxenian" target="_blank" class="button">View Full Code</a>
+            </div>
+
+            <h2>Next Steps</h2>
+            <p>I am currently building a set of SmartLights to bring into a classroom and get feedback from students. The interface is in need of work, and the challenge of how best to display training three different parameters has many different potential solutions. Seeing how more people interact with the device and getting their feedback will have the biggest impact on design decisions.</p>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/noahsaxenian" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/noah-saxenian" target="_blank">LinkedIn</a>
+            <a href="mailto:noahsaxenian@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../project-toggles.js"></script>
+    <script src="../table-of-contents.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spectrum Analyzer - Noah Saxenian</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Noah Saxenian</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link active">Engineering</a></li>
+                <li><a href="../art.html" class="nav-link">Art</a></li>
+                <li><a href="../resume.html" class="nav-link">Resume</a></li>
+                <li><a href="../contact.html" class="nav-link">About Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container project-detail">
+        <a href="../index.html" class="back-link">← Back to Engineering Projects</a>
+
+        <section class="detail-header">
+            <h1>Spectrum Analyzer</h1>
+            <p class="project-date">January 2024</p>
+            <div class="project-tags">
+                <span class="tag">LabVIEW</span>
+                <span class="tag">Signal Processing</span>
+                <span class="tag">FFT</span>
+            </div>
+        </section>
+
+        <section class="project-summary">
+            <p><strong>Assignment:</strong> Build a spectrum analyzer in LabVIEW that offers the ability for the user to generate complex waveforms and compare them, both visually and auditorily, to an inputted waveform.</p>
+        </section>
+
+        <section class="detail-content">
+
+            <div class="content-full-image">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/uNfp_T8DhNI" title="Spectrum Analyzer Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h2>Finished Product</h2>
+
+            <h3>Front Panel</h3>
+
+            <p>The major features of the front panel include:</p>
+            <ul>
+                <li>The <strong>generated signals panel</strong> in the top left allows the user to input the frequency, phase, amplitude, and wave type (sine, square, triangle, or sawtooth) of as many waves as they want. It also allows for the application of a highpass, lowpass, bandpass, or bandstop filter.</li>
+                <li>On the <strong>top right</strong>, the user can open a .wav file or record audio for the inputted duration.</li>
+                <li>Two buttons allow for <strong>audio playback</strong> of the generated waveform and the user uploaded or recorded waveform.</li>
+                <li>At the bottom, <strong>two graphs</strong> are displayed. The left shows the raw waveforms while the right shows the amplitudes of each frequency with a Fast Fourier Transform (FFT).</li>
+            </ul>
+
+            <h3>Block Code</h3>
+            <p>The overall block code is shown below. The event structure is used to update the graphs and play different sounds based on user input.</p>
+
+            <div class="content-full-image">
+                <img src="images/spectrum-analyzer/block.png" alt="Main block code">
+                <p class="image-caption">Main block code with event structure</p>
+            </div>
+
+            <div class="toggle-section toggle-compact">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h3>Other Event Cases</h3>
+                </button>
+                <div class="toggle-content">
+                    <div class="image-grid-2">
+                        <div class="grid-item">
+                            <img src="images/spectrum-analyzer/subvi1.png" alt="Event case 1">
+                            <p class="image-caption">Event case 1</p>
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/spectrum-analyzer/subvi2.png" alt="Event case 2">
+                            <p class="image-caption">Event case 2</p>
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/spectrum-analyzer/subvi3.png" alt="Event case 3">
+                            <p class="image-caption">Event case 3</p>
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/spectrum-analyzer/subvi4.png" alt="Event case 4">
+                            <p class="image-caption">Event case 4</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Waveform Generator SubVI</h3>
+            <p>The code for the subVI is shown below. This takes the clusters of signal parameters and filter options and outputs the generated waveform. The case structures on the left add the waves together. The case structure on the right applies the filter according to its settings. The timescale is then reapplied to create the waveform.</p>
+
+            <div class="content-full-image">
+                <img src="images/spectrum-analyzer/waveform.png" alt="Waveform Generator SubVI">
+                <p class="image-caption">Waveform Generator SubVI block code</p>
+            </div>
+
+            <h2>Code</h2>
+            <p>Download the files from the folder "building timbre" in the repository below. <code>kalimba.wav</code> is a recording of the "A" note played on a kalimba. Feel free to try to replicate its timbre!</p>
+
+            <div class="project-links">
+                <a href="https://github.com/noahsaxenian/ME45/tree/main/building%20timbre" target="_blank" class="button">View on GitHub</a>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/noahsaxenian" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/noah-saxenian" target="_blank">LinkedIn</a>
+            <a href="mailto:noahsaxenian@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../project-toggles.js"></script>
+    <script src="../table-of-contents.js"></script>
+</body>
+</html>

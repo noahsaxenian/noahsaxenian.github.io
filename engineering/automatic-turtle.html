@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Turtle - Noah Saxenian</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Noah Saxenian</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link active">Engineering</a></li>
+                <li><a href="../art.html" class="nav-link">Art</a></li>
+                <li><a href="../resume.html" class="nav-link">Resume</a></li>
+                <li><a href="../contact.html" class="nav-link">About Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container project-detail">
+        <a href="../index.html" class="back-link">← Back to Engineering Projects</a>
+
+        <section class="detail-header">
+            <h1>Tony the Turtle</h1>
+            <p class="project-date">Fall 2022</p>
+            <div class="project-tags">
+                <span class="tag">CAD</span>
+                <span class="tag">Fabrication</span>
+                <span class="tag">Electronics</span>
+                <span class="tag">Programming</span>
+            </div>
+        </section>
+
+        <section class="project-summary">
+            <p><em>Midterm project for an intro engineering class, Fall 2022.</em></p>
+        </section>
+
+        <section class="detail-content">
+
+            <div class="content-full-image">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/lJYf17w1iJ4" title="Automatic Turtle Working Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p class="image-caption">Working Video</p>
+            </div>
+
+            <h2>How It Works</h2>
+            <div class="content-row">
+                <div class="content-text">
+                    <p>A light sensor on the shell determines when Tony has been patted. Tony is now angry. This triggers a motor with a gear to turn, extending the head out of the shell. When the head is almost fully extended, a string attached to the top piece of the head becomes taut, pulling back on the upper jaw. At the fully extended position, the jaw is open. As the motor retracts the head back into the shell, the string goes slack and the head snaps down quickly, scaring off the threat.</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/turtle/cover.jpeg" alt="Automatic Turtle" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ETurtle%3C/text%3E%3C/svg%3E'">
+                </div>
+            </div>
+
+            <h2>How It Was Built</h2>
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h3>Shell</h3>
+                </button>
+                <div class="toggle-content">
+                    
+                    <p>Building the shell was one of the hardest and most time consuming parts of this project. I started with an image of a turtle and traced the base and shell pattern in Onshape. Once I modelled the curvature of the shell with a few surfaces, I extruded the shell pattern up to the surface of the shell and used the intersection points to create new planes. Working systematically, I used each previous plane and panel sketch to create the next shell panel that would fit perfectly. <a href="https://cad.onshape.com/documents/289b35efdf02be8914e802f4/w/5e0d59f926ca8aa849f5b012/e/c25bd3db634b2cfbc3260548?renderMode=0&uiState=636d267bca48322d89bee59e" target="_blank">See the CAD model here.</a></p>
+
+                    <div class="content-full-image">
+                        <img src="images/turtle/turtle-shell.jpg" alt="Turtle shell CAD" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22%3E%3Crect fill=%22%23ddd%22 width=%22800%22 height=%22400%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EShell CAD%3C/text%3E%3C/svg%3E'">
+                        <p class="image-caption">Turtle shell drawing</p>
+                    </div>
+
+                    
+                    <div class="image-grid-3">
+                        <div class="grid-item">
+                            <p>I ended up with 24 sketches to be exported and sent to the laser cutter, most of which I mirror and cut twice to create both sides. I etched each piece with a letter (or double letter to indicate which side) corresponding to where on the shell it goes.</p>
+                            <p>I used tape on the outside to hold it together temporarily, then used hot glue on the inside to secure the panels together.</p>
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/turtle/shell1.jpg" alt="Shell assembly step 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EShell Assembly 1%3C/text%3E%3C/svg%3E'">
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/turtle/shell2.jpg" alt="Shell assembly step 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EShell Assembly 2%3C/text%3E%3C/svg%3E'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h3>Head Mechanism</h3>
+                </button>
+                <div class="toggle-content">
+                    <div class="content-row">
+                        <div class="content-text">
+                            <p>Designing the head was an interesting challenge. I initially modeled the general shape I wanted, sliced it into a top and bottom piece, and created a hinge mechanism that would snap together. I then added a rack and pinion gear system to allow the head to be extended out from inside the shell.</p>
+                            <p>Getting it to hinge open on extension was the hardest part. My first design did not quite work because the hinge was too high on the jaw — a string pulling back on it would only open the mouth a tiny bit. <a href="https://cad.onshape.com/documents/289b35efdf02be8914e802f4/v/b256077194d8ab3720615d12/e/05e69b560ffdb7d4871496e3?renderMode=0&uiState=636d2c3aca48322d89bf2eaf" target="_blank">See the first version of the head here.</a></p>
+                            <p>The biggest change to the final version was moving the hinge point lower. Additionally, I moved the string attachment point to the side so it wouldn't interfere with the gears. <a href="https://cad.onshape.com/documents/289b35efdf02be8914e802f4/w/5e0d59f926ca8aa849f5b012/e/05e69b560ffdb7d4871496e3?renderMode=0&uiState=636d2d62ca48322d89bf3b15" target="_blank">The final version of the head assembly can be viewed here.</a></p>
+                        </div>
+                        <div class="content-image">
+                            <img src="images/turtle/head.jpeg" alt="Head mechanism" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22%3E%3Crect fill=%22%23ddd%22 width=%22800%22 height=%22400%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EHead Mechanism%3C/text%3E%3C/svg%3E'">
+                        </div>
+                    </div>
+                    <p>I designed a simple mounting system to hold the motor in place and allow the head to slide back and forth in a channel. <a href="https://cad.onshape.com/documents/289b35efdf02be8914e802f4/w/5e0d59f926ca8aa849f5b012/e/d905b2788220984195f79f8f?renderMode=0&uiState=636d2ecfca48322d89bf468e" target="_blank">The CAD files can be viewed here.</a></p>
+                </div>
+            </div>
+
+            <div class="toggle-section">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <h3>Electronics and Code</h3>
+                </button>
+                <div class="toggle-content">
+                    <p>The electronics for this project were relatively simple. A DC motor is connected to a MakerPi microcontroller that reads values from a light sensor. The MakerPi is powered by a AAA battery pack. The motor terminals are connected to pins GP8 and GP9. The light sensor is connected to port 7 on the MakerPi.</p>
+
+                    <div class="image-grid-2">
+                        <div class="grid-item">
+                            <img src="images/turtle/internals.jpg" alt="Electronics overview" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EElectronics%3C/text%3E%3C/svg%3E'">
+                        </div>
+                        <div class="grid-item">
+                            <img src="images/turtle/internals2.jpg" alt="Electronics detail" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EElectronics Detail%3C/text%3E%3C/svg%3E'">
+                        </div>
+                    </div>
+
+                    <p>Some slight modifications had to be made to fix the light sensor to the shell. I de-soldered the sensor from the board and reattached it with longer wires, allowing me to insert the sensor into a small hole drilled in the shell.</p>
+                    <p>The code uses the light sensor value as an interrupt to call a <code>head_snap</code> function. When the light sensor values drop significantly this function is called. It turns the motor forward, stops for a second, and then reverses back to its starting point.</p>
+
+                    <div class="toggle-section toggle-option">
+                        <button class="toggle-header">
+                            <span class="toggle-icon">▶</span>
+                            <p>Code on the MakerPi</p>
+                        </button>
+                        <div class="toggle-content">
+                            <div class="code-block">
+                                <div class="code-block-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="code-copy-btn">Copy</button>
+                                </div>
+                                <pre><code class="language-python">import machine
+import time
+from machine import Pin
+import micropython
+
+micropython.alloc_emergency_exception_buf(100)
+
+class Turtle():
+    def __init__(self, adc=28, pwm=15, buzz=22):
+        self.photo_pin = machine.ADC(adc)
+        self.photo_trigger = Pin(adc, Pin.IN, Pin.PULL_DOWN)
+        self.M1A = machine.Pin(8, machine.Pin.OUT)
+        self.M1B = machine.Pin(9, machine.Pin.OUT)
+
+        period = 20
+        frequency = int(1000/period)
+        self.min = int(65536/period * 1.0)
+        self.mid = int(1.5 * period)
+        self.max = int(2.0 * period)
+
+        self.pwm = machine.PWM(machine.Pin(pwm))
+        self.pwm.freq(frequency)
+        self.buzzer = machine.PWM(machine.Pin(buzz))
+        self.photo_trigger.irq(handler=self.light_triggered, trigger=Pin.IRQ_FALLING)
+
+    def brightness(self):
+        return self.photo_pin.read_u16()
+
+    def beep(self, freq=440, duration=0.5):
+        self.buzzer.freq(freq)
+        self.buzzer.duty_u16(int(65536/2))
+        time.sleep(duration)
+        self.buzzer.duty_u16(0)
+
+    def light_triggered(self, change):
+        self.photo_trigger.irq(None)
+        self.head_snap()
+        time.sleep(1)
+        self.photo_trigger.irq(handler=self.light_triggered, trigger=Pin.IRQ_FALLING)
+
+    def head_snap(self):
+        delay = 0.62
+        self.forward()
+        time.sleep(delay)
+        self.stop()
+        time.sleep(0.1)
+        self.reverse()
+        time.sleep(delay)
+        self.stop()
+
+    def forward(self):
+        self.M1A.high()
+        self.M1B.low()
+
+    def reverse(self):
+        self.M1A.low()
+        self.M1B.high()
+
+    def stop(self):
+        self.M1A.low()
+        self.M1B.low()
+
+turtle = Turtle()</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p><a href="https://cad.onshape.com/documents/289b35efdf02be8914e802f4/w/5e0d59f926ca8aa849f5b012/e/d8c13c7f65c58efdef0c59be?renderMode=0&uiState=636d38baca48322d89bfa02e" target="_blank">View the full CAD assembly here.</a></p>
+
+            <h2>Final Thoughts</h2>
+            <p>My favorite part of this project was designing the shell. It took a ton of trial and error to figure out how to model a shell that would both fit together and look good. I had to stray away from the purely hexagonal design that I started with, but the result looks better than I could have expected.</p>
+            <p>The head mechanism was incredibly satisfying to get working as well. I love how it uses one motor to create two separate motions. One of the difficulties I faced was calibrating the amount of time the motor moves forward to be fully extended. When I switched from powering the MakerPi with my computer to the battery pack, it suddenly turned much faster and I had to recalibrate it. In a future version, I would use either an encoded motor to know its position or an additional sensor to determine when the head is fully extended.</p>
+            <p>Overall, this project was a joy and a challenge to build and I am really proud of the result.</p>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/noahsaxenian" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/noah-saxenian" target="_blank">LinkedIn</a>
+            <a href="mailto:noahsaxenian@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../project-toggles.js"></script>
+    <script src="../code-blocks.js"></script>
+    <script src="../table-of-contents.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</body>
+</html>

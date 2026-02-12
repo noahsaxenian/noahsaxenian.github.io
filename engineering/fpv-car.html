@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convoluted FPV Car - Noah Saxenian</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">Noah Saxenian</a>
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="nav-link active">Engineering</a></li>
+                <li><a href="../art.html" class="nav-link">Art</a></li>
+                <li><a href="../resume.html" class="nav-link">Resume</a></li>
+                <li><a href="../contact.html" class="nav-link">About Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container project-detail">
+        <a href="../index.html" class="back-link">← Back to Engineering Projects</a>
+
+        <section class="detail-header">
+            <h1>Convoluted FPV Car</h1>
+            <p class="project-date">Fall 2024</p>
+            <div class="project-tags">
+                <span class="tag">Robotics</span>
+                <span class="tag">Electronics</span>
+                <span class="tag">Microcontrollers</span>
+            </div>
+        </section>
+
+        <section class="project-summary">
+            <p><strong>Assignment:</strong> ME-35 Intro to Robotics, Fall 2024</p>
+            <p><strong>Goal:</strong> Build a car to play "Sharks and Minnows" with two motors controlled by two Raspberry Pi Pico W's, operated FPV with phone camera on Zoom, controlled with an OpenMV camera reading April Tags, and started/stopped with hand signals using a trained Teachable Machines model.</p>
+            <p><strong>Partner:</strong> Medha Saraogi</p>
+        </section>
+
+        <section class="detail-content">
+
+            <h2>Demo Videos</h2>
+            <div class="image-grid-2">
+                <div class="grid-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/SCZjWh1p_Wg" title="Demo of car starting with gesture and joystick control" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <p class="image-caption">Demo of car starting with gesture and joystick control</p>
+                </div>
+                <div class="grid-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/7h_OfGYyM9w" title="Live FPV feed during class Sharks and Minnows game" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <p class="image-caption">Live FPV feed during class "Sharks and Minnows" game</p>
+                </div>
+            </div>
+
+            <h2>Custom Joystick</h2>
+            <div class="content-row" style="--col-a: 2fr; --col-b: 1fr;">
+                <div class="content-text">
+                    <p>Driven by the desire to control the car with a joystick, I designed a 3D printed ball joint to act as one. A small printed out April Tag is affixed to the underside, with an OpenMV camera looking up at the tag. It reads (x, y) position of the tag and publishes that information over MQTT to be received by the car and transformed into acceleration and steering commands.</p>
+                    <p><a href="https://cad.onshape.com/documents/d90fbd0413204b9c1256befe/w/89d3e32cbe67119041518079/e/e25cabcc948bf121b06a941c?renderMode=0&uiState=66fd59156c64d7467198b098" target="_blank">OnShape CAD linked here.</a></p>
+                </div>
+                <div class="content-image">
+                    <img src="images/fpv-car/joystick1.jpeg" alt="3D printed joystick" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EJoystick%3C/text%3E%3C/svg%3E'">
+                    <p class="image-caption">Joystick</p>
+                </div>
+            </div>
+
+            <div class="content-row" style="--col-a: 3fr; --col-b: 2.25fr;">
+                <div class="grid-item">
+                    <img src="images/fpv-car/openmv.gif" alt="View from the OpenMV camera IDE">
+                    <p class="image-caption">View from the OpenMV camera IDE</p>
+                </div>
+                <div class="grid-item">
+                    <img src="images/fpv-car/joystick2.jpeg" alt="Joystick detail" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EJoystick Detail%3C/text%3E%3C/svg%3E'">
+                    <p class="image-caption">Joystick underside with April Tag</p>
+                </div>
+            </div>
+
+            <div class="toggle-section toggle-compact">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <p>Code on the OpenMV camera — <code>cam_control.py</code></p>
+                </button>
+                <div class="toggle-content">
+                    <div class="code-block">
+                        <div class="code-block-header">
+                            <span class="code-language">Python</span>
+                            <button class="code-copy-btn">Copy</button>
+                        </div>
+                        <pre><code class="language-python">import time
+import network
+from mqtt import MQTTClient
+from secrets import mysecrets
+import machine
+import sensor
+
+SSID = mysecrets['SSID']  # Network SSID
+KEY = mysecrets['key']    # Network Password
+
+mqtt_broker = 'broker.hivemq.com'
+topic_pub = 'ME35-24/noahmedha'
+
+# Init wlan module and connect to network
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect(SSID, KEY)
+
+while not wlan.isconnected():
+    print('Trying to connect to "{:s}"...'.format(SSID))
+    time.sleep_ms(1000)
+
+print("WiFi Connected ", wlan.ifconfig())
+
+client = MQTTClient("openmv_noah", mqtt_broker, port=1883)
+client.connect()
+
+# Setup camera
+sensor.reset()
+sensor.set_pixformat(sensor.GRAYSCALE)
+sensor.set_framesize(sensor.QQVGA)
+sensor.skip_frames(time=2000)
+sensor.set_auto_gain(False)
+sensor.set_auto_whitebal(False)
+
+f_x = (2.8 / 3.984) * 160
+f_y = (2.8 / 2.952) * 120
+c_x = 160 * 0.5
+c_y = 120 * 0.5
+
+found_tag = 0
+while True:
+    x, y = None, None
+    img = sensor.snapshot()
+    for tag in img.find_apriltags(fx=f_x, fy=f_y, cx=c_x, cy=c_y):
+        img.draw_rectangle(tag.rect, color=(255, 0, 0))
+        img.draw_cross(tag.cx, tag.cy, color=(0, 255, 0))
+        x = tag.x_translation
+        y = tag.y_translation
+        found_tag = 1
+
+    msg = f'{found_tag},{x},{y}'
+    print(msg)
+    client.publish(topic_pub.encode(), msg.encode())
+    found_tag = 0
+    time.sleep_ms(100)</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Gesture Commands</h2>
+            <div class="content-row" style="--col-a: 3fr; --col-b: 1fr;">
+                <div class="content-text">
+                    <p>A pose model was trained with <a href="https://teachablemachine.withgoogle.com/" target="_blank">Teachable Machines</a>, using a right hand raised to signal start, left hand to signal stop, and a "nothing" class to be the default.</p>
+                    <p><a href="https://teachablemachine.withgoogle.com/models/wovVCX6Nw/" target="_blank">Trained model link here.</a></p>
+                    <p>I ran custom code on the "TM" tab of the ME35 Webpage to run this model, decode the results, and publish to an MQTT topic.</p>
+                </div>
+                <div class="content-image">
+                    <img src="images/fpv-car/gesture.gif" alt="Gesture start/stop demo">
+                    <p class="image-caption">Gesture start/stop in action</p>
+                </div>
+            </div>
+
+            <div class="toggle-section toggle-compact">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <p>Code running the TM model — <code>tm_start_stop.py</code></p>
+                </button>
+                <div class="toggle-content">
+                    <div class="code-block">
+                        <div class="code-block-header">
+                            <span class="code-language">Python</span>
+                            <button class="code-copy-btn">Copy</button>
+                        </div>
+                        <pre><code class="language-python">from pyscript.js_modules import teach, pose, mqtt_library
+import time
+
+topic = "ME35-24/carstartstop"
+
+client = mqtt_library.myClient
+client.init()
+
+def run():
+    message = 'run'
+    client.publish(topic, message)
+
+def stop():
+    message = 'stop'
+    client.publish(topic, message)
+
+def run_model(URL2):
+    s = pose.s
+    s.URL2 = URL2
+    s.init()
+
+def get_predictions():
+    predictions = []
+    container = document.getElementById('label-container')
+    if container:
+        divs = container.getElementsByTagName('div')
+        for i in range(0, divs.length):
+            divElement = divs[i].textContent
+            predictions.append(divElement)
+    return predictions
+
+run_model("https://teachablemachine.withgoogle.com/models/wovVCX6Nw/")
+
+while True:
+    predictions = get_predictions()
+    classes = []
+    values = []
+    if predictions:
+        for i in range(0, len(predictions)):
+            class_name = predictions[i].split(': ')[0]
+            value = predictions[i].split(': ')[1]
+            classes.append(class_name)
+            values.append(float(value))
+        max_index = values.index(max(values))
+        predicted_class = classes[max_index]
+
+        if predicted_class == "start":
+            run()
+        elif predicted_class == "stop":
+            stop()
+        else:
+            print(predicted_class)
+    time.sleep(1)</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <h2>The Car</h2>
+            <p>A simple prototype design to demonstrate the functionality. A 9V battery powers the motors through a Maker Drive H-Bridge Motor Controller. The two Pico W's are powered by the 5V pin on the Maker Drive.</p>
+            <div class="image-grid-2">
+                <div class="grid-item">
+                    <img src="images/fpv-car/car1.jpeg" alt="Car front view" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ECar Front%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="grid-item">
+                    <img src="images/fpv-car/car2.jpeg" alt="Car electronics" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EElectronics%3C/text%3E%3C/svg%3E'">
+                </div>
+            </div>
+
+            <p>One Pico is dedicated to receiving MQTT commands from the Teachable Machines model. When it hears "run," it turns on a pin connected to the other Pico. When it receives "stop," it turns that pin off.</p>
+
+            <div class="toggle-section toggle-compact">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <p>Code on the Pico listening to Teachable Machines — <code>car_start_stop.py</code></p>
+                </button>
+                <div class="toggle-content">
+                    <div class="code-block">
+                        <div class="code-block-header">
+                            <span class="code-language">Python</span>
+                            <button class="code-copy-btn">Copy</button>
+                        </div>
+                        <pre><code class="language-python">import time
+from mqtt import MQTTClient
+from wifi import *
+from machine import Pin, PWM
+
+connect_wifi()
+
+mqtt_broker = 'broker.hivemq.com'
+port = 1883
+topic_sub = 'ME35-24/carstartstop'
+
+run = False
+
+def callback(topic, msg):
+    global run
+    string = msg.decode()
+    if string == "run":
+        run = True
+    elif string == "stop":
+        run = False
+
+client = MQTTClient('startstop', mqtt_broker, port)
+client.connect()
+print('Connected to %s MQTT broker' % (mqtt_broker))
+client.set_callback(callback)
+client.subscribe(topic_sub.encode())
+
+pin2 = Pin(2, Pin.OUT)
+pin2.value(0)
+
+while True:
+    client.check_msg()
+    if run:
+        pin2.value(1)
+    else:
+        pin2.value(0)
+    time.sleep_ms(100)</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <p>The other Pico is dedicated to controlling the motors. It monitors a separate MQTT topic and parses the string into x and y coordinates, then calculates PWM values for each motor pin.</p>
+
+            <div class="toggle-section toggle-compact">
+                <button class="toggle-header">
+                    <span class="toggle-icon">▶</span>
+                    <p>Code controlling the motors — <code>car_motor_control.py</code></p>
+                </button>
+                <div class="toggle-content">
+                    <div class="code-block">
+                        <div class="code-block-header">
+                            <span class="code-language">Python</span>
+                            <button class="code-copy-btn">Copy</button>
+                        </div>
+                        <pre><code class="language-python">import time
+from mqtt import MQTTClient
+from wifi import *
+from machine import Pin, PWM
+
+connect_wifi()
+
+mqtt_broker = 'broker.hivemq.com'
+port = 1883
+topic_sub = 'ME35-24/noahmedha'
+
+y_min = -4.5
+y_max = 3.5
+y_avg = (y_min + y_max) / 2
+x_min = -4.0
+x_max = 4.0
+x_avg = (x_min + x_max) / 2
+
+x_pos, y_pos = x_avg, y_avg
+
+def callback(topic, msg):
+    global x_pos, y_pos
+    string = msg.decode()
+    if string[1] == ",":
+        found_tag, x, y = string.split(',')
+        x_pos, y_pos = x_avg, y_avg
+        if int(found_tag) == 1:
+            x_pos = float(x)
+            y_pos = float(y)
+
+client = MQTTClient('motorcontrol', mqtt_broker, port)
+client.connect()
+client.set_callback(callback)
+client.subscribe(topic_sub.encode())
+
+pwm2 = PWM(Pin(2)); pwm3 = PWM(Pin(3))
+pwm4 = PWM(Pin(4)); pwm5 = PWM(Pin(5))
+for pwm in [pwm2, pwm3, pwm4, pwm5]:
+    pwm.freq(1000)
+
+def motor_run(speed, m1, m2):
+    speed = int(max(-100, min(100, speed)))
+    if speed >= 0:
+        m2.duty_u16(0)
+        m1.duty_u16(int(speed * 65535 // 100))
+    else:
+        m1.duty_u16(0)
+        m2.duty_u16(int(-speed * 65535 // 100))
+
+def motor_stop():
+    for pwm in [pwm2, pwm3, pwm4, pwm5]:
+        pwm.duty_u16(0)
+
+pin20 = Pin(20, Pin.IN)
+
+while True:
+    client.check_msg()
+    if pin20.value() == 1:
+        speed = -int((max(y_min, min(y_max, y_pos)) - y_avg) * (100/((y_max - y_min)/2)))
+        turn = int((max(x_min, min(x_max, x_pos)) - x_avg) * (30/((x_max - x_min)/2)))
+        motor_run(speed - turn, pwm2, pwm3)
+        motor_run(speed + turn, pwm4, pwm5)
+    else:
+        motor_stop()
+    time.sleep_ms(10)</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Repository</h2>
+            <p>All code available in the “Convoluted Car” folder of my ME35-Robotics GitHub Repository:</p>
+            <div class="project-links">
+                <a href="https://github.com/noahsaxenian/ME35-Robotics/tree/main/Convoluted%20Car" target="_blank" class="button">View on GitHub</a>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/noahsaxenian" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/noah-saxenian" target="_blank">LinkedIn</a>
+            <a href="mailto:noahsaxenian@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../project-toggles.js"></script>
+    <script src="../code-blocks.js"></script>
+    <script src="../table-of-contents.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</body>
+</html>
