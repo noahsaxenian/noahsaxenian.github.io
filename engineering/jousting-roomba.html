@@ -37,12 +37,13 @@
 
         <section class="project-summary">
             <p>This jousting robot uses the Create 3 platform to navigate around two "barrels" before driving up next to a wall to face off against another robot. The goal was to create a knight that would knock the opponent off but be chivalrous in doing so — it must be able to be knocked off itself.</p>
+            <p>Built in collaboration with Julian Moody</p>
         </section>
 
         <section class="detail-content">
 
             <div class="content-full-image">
-                <img src="images/jousting/jousting-main.jpg" alt="Jousting Roomba" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%23ddd%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EJousting Roomba%3C/text%3E%3C/svg%3E'">
+                <img src="images/jousting/cover.jpeg" alt="Jousting Roomba" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22500%22%3E%3Crect fill=%22%23ddd%22 width=%22800%22 height=%22500%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EJousting Roomba%3C/text%3E%3C/svg%3E'">
             </div>
 
             <h2>Features</h2>
@@ -66,7 +67,7 @@
                 </button>
                 <div class="toggle-content">
 
-                    <div class="toggle-section toggle-compact">
+                    <div class="toggle-section toggle-option">
                         <button class="toggle-header">
                             <span class="toggle-icon">▶</span>
                             <p>Base code controlling the joust</p>
@@ -116,7 +117,7 @@ def main():
 main()</code></pre>
                             </div>
 
-                            <div class="toggle-section toggle-small">
+                            <div class="toggle-section toggle-option">
                                 <button class="toggle-header">
                                     <span class="toggle-icon">▶</span>
                                     <p><code>AskAirtable()</code></p>
@@ -150,7 +151,7 @@ def AskAirtable():
                         </div>
                     </div>
 
-                    <div class="toggle-section toggle-compact">
+                    <div class="toggle-section toggle-option">
                         <button class="toggle-header">
                             <span class="toggle-icon">▶</span>
                             <p>joustLib — ROS Actions</p>
@@ -158,18 +159,13 @@ def AskAirtable():
                         <div class="toggle-content">
                             <p>The bulk of the Create controls are done through ROS2 actions. Each action follows the same structure: set up an action client, create a goal message, set up callbacks to tell when done, and set <code>self.done = True</code> when complete.</p>
 
-                            <div class="toggle-section toggle-small">
-                                <button class="toggle-header">
-                                    <span class="toggle-icon">▶</span>
-                                    <p>WallFollow class</p>
-                                </button>
-                                <div class="toggle-content">
-                                    <div class="code-block">
-                                        <div class="code-block-header">
-                                            <span class="code-language">Python</span>
-                                            <button class="code-copy-btn">Copy</button>
-                                        </div>
-                                        <pre><code class="language-python">class Wall(Node):
+                            <h3>WallFollow class</h3>
+                            <div class="code-block">
+                                <div class="code-block-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="code-copy-btn">Copy</button>
+                                </div>
+                                <pre><code class="language-python">class Wall(Node):
     def __init__(self, namespace='/Picard'):
         self.done = False
         super().__init__('wall_follow_action_client')
@@ -195,23 +191,16 @@ def AskAirtable():
     def get_result_callback(self, future):
         result = future.result().result
         self.done = True</code></pre>
-                                    </div>
-                                </div>
                             </div>
 
-                            <div class="toggle-section toggle-small">
-                                <button class="toggle-header">
-                                    <span class="toggle-icon">▶</span>
-                                    <p>IR Follower class</p>
-                                </button>
-                                <div class="toggle-content">
-                                    <p>Uses an ROS subscription to access IR sensor data from the Create. Uses a publisher to send twist commands to drive up to a set distance from an object, with a proportional controller to calculate speed from distance values.</p>
-                                    <div class="code-block">
-                                        <div class="code-block-header">
-                                            <span class="code-language">Python</span>
-                                            <button class="code-copy-btn">Copy</button>
-                                        </div>
-                                        <pre><code class="language-python">class IrFollower(Node):
+                            <h3>IR Follower class</h3>
+                            <p>Uses an ROS subscription to access IR sensor data from the Create. Uses a publisher to send twist commands to drive up to a set distance from an object, with a proportional controller to calculate speed from distance values.</p>
+                            <div class="code-block">
+                                <div class="code-block-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="code-copy-btn">Copy</button>
+                                </div>
+                                <pre><code class="language-python">class IrFollower(Node):
     def __init__(self, namespace='/rogers'):
         self.target_dist = 5
         self.tuning = 0.01
@@ -243,13 +232,11 @@ def AskAirtable():
     def set_goal(self, target_dist):
         self.target_dist = target_dist
         self.done = False</code></pre>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="toggle-section toggle-compact">
+                    <div class="toggle-section toggle-option">
                         <button class="toggle-header">
                             <span class="toggle-icon">▶</span>
                             <p>Joust class — serial controls</p>
@@ -257,19 +244,14 @@ def AskAirtable():
                         <div class="toggle-content">
                             <p>The Joust class wraps all Create actions and serial communication with the MakerPi. Each create action follows the same pattern: set goal, then call <code>wait()</code> until done.</p>
 
-                            <div class="toggle-section toggle-small">
-                                <button class="toggle-header">
-                                    <span class="toggle-icon">▶</span>
-                                    <p>Gallop, servo, and music functions</p>
-                                </button>
-                                <div class="toggle-content">
-                                    <p>These functions send MicroPython code over serial to the MakerPi. The music function defines frequencies for each note and plays the Rocky theme — see if you can identify it from the video!</p>
-                                    <div class="code-block">
-                                        <div class="code-block-header">
-                                            <span class="code-language">Python</span>
-                                            <button class="code-copy-btn">Copy</button>
-                                        </div>
-                                        <pre><code class="language-python">def gallop(self):
+                            <h3>Gallop, servo, and music functions</h3>
+                            <p>These functions send MicroPython code over serial to the MakerPi. The music function defines frequencies for each note and plays the Rocky theme — see if you can identify it from the video!</p>
+                            <div class="code-block">
+                                <div class="code-block-header">
+                                    <span class="code-language">Python</span>
+                                    <button class="code-copy-btn">Copy</button>
+                                </div>
+                                <pre><code class="language-python">def gallop(self):
     code = '''
 import machine
 M1A = machine.Pin(8, machine.Pin.OUT)
@@ -300,8 +282,6 @@ for i in range(2):
         beep(notes1[i], duration1[i])
 '''
     self.run_code(code)</code></pre>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -316,55 +296,24 @@ for i in range(2):
                 </button>
                 <div class="toggle-content">
 
-                    <div class="toggle-section toggle-compact">
-                        <button class="toggle-header">
-                            <span class="toggle-icon">▶</span>
-                            <p>Horse</p>
-                        </button>
-                        <div class="toggle-content">
-                            <p>The laser cut horse was the most complicated part of fabrication. <a href="https://cad.onshape.com/documents/8bfbb28606d60f71688215fe/w/5d33f3def617ce53e9ed2e8a/e/06b2e69cf84713c136e0285d?renderMode=0&uiState=63910f51e75d51349dc61242" target="_blank">Here is a CAD model of the horse.</a></p>
-                            <ol>
-                                <li>Trace an image of a horse and extrude to create the side panels.</li>
-                                <li>Cut tab holes into the side panels.</li>
-                                <li>Use lofts from tab to tab to generate the curvature for the living hinge.</li>
-                                <li>Write down lengths of each path to create the living hinge at the right dimensions.</li>
-                                <li>Model the cutout to fit the servo motor inside.</li>
-                            </ol>
-                        </div>
-                    </div>
+                    <h3>Horse</h3>
+                    <p>The laser cut horse was the most complicated part of fabrication. <a href="https://cad.onshape.com/documents/8bfbb28606d60f71688215fe/w/5d33f3def617ce53e9ed2e8a/e/06b2e69cf84713c136e0285d?renderMode=0&uiState=63910f51e75d51349dc61242" target="_blank">Here is a CAD model of the horse.</a></p>
+                    <ol>
+                        <li>Trace an image of a horse and extrude to create the side panels.</li>
+                        <li>Cut tab holes into the side panels.</li>
+                        <li>Use lofts from tab to tab to generate the curvature for the living hinge.</li>
+                        <li>Write down lengths of each path to create the living hinge at the right dimensions.</li>
+                        <li>Model the cutout to fit the servo motor inside.</li>
+                    </ol>
 
-                    <div class="toggle-section toggle-compact">
-                        <button class="toggle-header">
-                            <span class="toggle-icon">▶</span>
-                            <p>Galloping Cam</p>
-                        </button>
-                        <div class="toggle-content">
-                            <div class="content-row">
-                                <div class="content-text">
-                                    <p>I designed a simple cam to attach to a DC motor. This is what lifts the horse up and down for the galloping motion. <a href="https://cad.onshape.com/documents/8bfbb28606d60f71688215fe/w/5d33f3def617ce53e9ed2e8a/e/5565871115844d5e8e59ebd4?renderMode=0&uiState=6391104de75d51349dc615d9" target="_blank">Here is the CAD model.</a></p>
-                                    <p>I realized the cam could just push on the bottom of the servo motor — a beautifully simple solution. Instead of designing a mount to hold the DC motor vertically, we cut a chunk of PVC pipe and glued the motor inside it.</p>
-                                </div>
-                                <div class="content-image">
-                                    <img src="images/jousting/cam.jpg" alt="Galloping cam" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ECam%3C/text%3E%3C/svg%3E'">
-                                </div>
-                            </div>
+                    <h3>Galloping Action</h3>
+                    <div class="content-row">
+                        <div class="content-text">
+                            <p>I designed a simple cam to attach to a DC motor. This is what lifts the horse up and down for the galloping motion. <a href="https://cad.onshape.com/documents/8bfbb28606d60f71688215fe/w/5d33f3def617ce53e9ed2e8a/e/5565871115844d5e8e59ebd4?renderMode=0&uiState=6391104de75d51349dc615d9" target="_blank">Here is the CAD model.</a></p>
+                            <p>I realized the cam could just push on the bottom of the servo motor — a beautifully simple solution. Instead of designing a mount to hold the DC motor vertically, we cut a chunk of PVC pipe and glued the motor inside it.</p>
                         </div>
-                    </div>
-
-                    <div class="toggle-section toggle-compact">
-                        <button class="toggle-header">
-                            <span class="toggle-icon">▶</span>
-                            <p>Knight</p>
-                        </button>
-                        <div class="toggle-content">
-                            <div class="content-row">
-                                <div class="content-text">
-                                    <p>Julian designed the knight to be Dwayne "The Rock" Johnson. He imported a model of a knight, sliced off its head, imported a model of the Rock's head, and spliced the two together. <a href="https://cad.onshape.com/documents/8bfbb28606d60f71688215fe/w/5d33f3def617ce53e9ed2e8a/e/0df37f1f1a7a315f50a5a477?renderMode=0&uiState=63911257e75d51349dc61e97" target="_blank">Here is the CAD assembly.</a></p>
-                                </div>
-                                <div class="content-image">
-                                    <img src="images/jousting/knight.jpg" alt="The Rock Knight" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3EThe Rock Knight%3C/text%3E%3C/svg%3E'">
-                                </div>
-                            </div>
+                        <div class="content-image">
+                            <img src="images/jousting/cam.jpg" alt="Galloping cam" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22300%22/%3E%3Ctext fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2218%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ECam%3C/text%3E%3C/svg%3E'">
                         </div>
                     </div>
 
